@@ -1,8 +1,8 @@
 import React from 'react';
 
-function StatisticsWidget() {
+function StatisticsWidget({ className }) {
     return (
-      <div className="bg-white shadow-md rounded-lg p-6 space-y-8">
+      <div className={`bg-white shadow-md rounded-lg p-6 space-y-8 ${className}`}>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Statistics</h2>
 
         {/* First Row*/}

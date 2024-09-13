@@ -1,8 +1,8 @@
 import React from 'react';
 
-function TaskSummaryWidget() {
+function TaskSummaryWidget({ className }) {
     return(
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Task Summary</h2>
         <ul className="space-y-3">
           <li className="flex flex-row justify-between items-center">

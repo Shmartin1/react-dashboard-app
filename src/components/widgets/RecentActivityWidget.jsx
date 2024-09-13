@@ -1,8 +1,8 @@
 import React from 'react';
 
-function RecentActivityWidget() {
+function RecentActivityWidget({ className }) {
     return (
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Recent Activity</h2>
             <ul className="space-y-2">
                 <li className="bg-gray-100 p-2 rounded-lg">

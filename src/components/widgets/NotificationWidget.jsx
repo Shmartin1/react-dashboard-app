@@ -1,8 +1,8 @@
 import React from 'react';
 
-function NotificationWidget() {
+function NotificationWidget({ className }) {
     return (
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
             <h2>Notifications</h2>
             <ul className="space-y-2">
                 <li className="bg-red-100 text-red-800 p-3 rounded-lg">

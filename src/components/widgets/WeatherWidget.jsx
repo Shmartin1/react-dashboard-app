@@ -1,8 +1,8 @@
 import React from 'react';
 
-function WeatherWidget() {
+function WeatherWidget({ className }) {
     return (
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
             <h2 className="text-lg font-semibold text-gray-800 mb-4">Current Weather</h2>
             <div className="text-gray-700">
             <p className="text-2xl font-bold">22°C</p>
