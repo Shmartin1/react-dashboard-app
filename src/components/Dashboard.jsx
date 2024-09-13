@@ -1,17 +1,33 @@
-// src/components/Dashboard.jsx
 import React from 'react';
+import StatisticsWidget from './widgets/StatisticsWidget';
+import TaskSummaryWidget from './widgets/TaskSummaryWidget';
+import RecentMessageWidget from './widgets/RecentMessagesWidget';
+import ProgressWidget from './widgets/ProgressWidget';
+import DateTimeWidget from './widgets/DateTimeWidget';
+import ChartWidget from './widgets/ChartWidget';
 
 function Dashboard() {
   return (
-    <div style={dashboardStyle}>
-      <h2>Dashboard Overview</h2>
-      <p>This is the main dashboard area where widgets will be displayed.</p>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+      {/* Statistics Widget */}
+      <StatisticsWidget />
+
+      {/* Task Summary Widget */}
+      <TaskSummaryWidget />
+
+      {/* Chart Widget*/}
+      <ChartWidget />
+
+      {/* Recent Messages Widget */}
+      <RecentMessageWidget />
+
+      {/* Progress Bar Widget */}
+      <ProgressWidget />
+
+      {/* Calendar Widget */}
+      <DateTimeWidget />
     </div>
   );
 }
-
-const dashboardStyle = {
-  padding: '20px',
-};
 
 export default Dashboard;

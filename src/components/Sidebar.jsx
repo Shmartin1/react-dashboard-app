@@ -13,7 +13,6 @@ function Sidebar() {
       <ul style={menuStyle}>
         {[
           { to: '/', label: 'Dashboard' },
-          { to: '/profile', label: 'Profile' },
           { to: '/tasks', label: 'Tasks' },
           { to: '/charts', label: 'Charts' },
           { to: '/activities', label: 'Activities' },
@@ -48,7 +47,7 @@ const sidebarStyle = {
   backgroundColor: '#1A202C', // Primary color (dark slate gray)
   color: '#F7FAFC', // Light text
   height: '100vh',
-  width: '200px',
+  width: '175px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
