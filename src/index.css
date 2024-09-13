@@ -1,4 +1,10 @@
-/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Include Tailwind's base styles */
 @tailwind base;
+
+/* Include Tailwind's components */
 @tailwind components;
+
+/* Include Tailwind's utilities */
 @tailwind utilities;
