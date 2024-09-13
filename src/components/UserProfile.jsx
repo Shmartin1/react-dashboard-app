@@ -23,7 +23,7 @@ function UserProfile() {
   
   return (
     <div style={{ padding: '20px' }}>
-      <h2 style={margin}>User Profile</h2>
+      <h2>User Profile</h2>
       {user ? (
         <div>
           <p style={margin}>Welcome, {user.username}</p>
