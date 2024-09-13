@@ -47,7 +47,7 @@ function UserProfile() {
                 <label>
                     Password:  
                     <input 
-                       type="text"
+                       type="password"
                        style={{margin: '10px'}}
                        value={password}
                        onChange={(e) => setPassword(e.target.value)}
