@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import UserProfile from './components/UserProfile';
+import TaskManager from './components/TaskManager';
+import ChartWidget from './components/ChartWidget';
+import ActivityFeed from './components/ActivityFeed';
+import { UserProvider } from './context/UserContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <UserProvider>
+      <Router>
+            <div style={{ display: 'flex' }}>
+              <Sidebar />
+              <div style={{ flex: 1 }}>
+                <Header />
+                <main>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/profile" element={<UserProfile />} />
+                    <Route path="/tasks" element={<TaskManager />} />
+                    <Route path="/charts" element={<ChartWidget />} />
+                    <Route path="/activities" element={<ActivityFeed />} />
+                  </Routes>
+                </main>
+              </div>
+            </div>
+          </Router>
+    </UserProvider>
+    </QueryClientProvider>
   );
 }
 
