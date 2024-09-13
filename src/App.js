@@ -6,7 +6,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import UserProfile from './components/UserProfile';
 import TaskManager from './components/TaskManager';
-import ChartWidget from './components/ChartWidget';
+import LineChart from './components/LineChart';
 import ActivityFeed from './components/ActivityFeed';
 import Settings from './components/Settings'
 import { UserProvider } from './context/UserContext';
@@ -28,7 +28,7 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/profile" element={<UserProfile />} />
                   <Route path="/tasks" element={<TaskManager />} />
-                  <Route path="/charts" element={<ChartWidget />} />
+                  <Route path="/charts" element={<LineChart />} />
                   <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
                 </Routes>

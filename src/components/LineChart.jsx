@@ -1,4 +1,4 @@
-// src/components/ChartWidget.jsx
+// src/components/LineChart.jsx
 import React from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
@@ -6,7 +6,7 @@ import { Line } from 'react-chartjs-2';
 // Register the required components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-function ChartWidget() {
+function LineChart() {
   const data = {
     labels: ['January', 'February', 'March', 'April', 'May'],
     datasets: [
@@ -28,4 +28,4 @@ function ChartWidget() {
   );
 }
 
-export default ChartWidget;
+export default LineChart;
