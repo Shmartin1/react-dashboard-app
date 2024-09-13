@@ -48,7 +48,7 @@ const sidebarStyle = {
   backgroundColor: '#1A202C', // Primary color (dark slate gray)
   color: '#F7FAFC', // Light text
   height: '100vh',
-  width: '250px',
+  width: '200px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
