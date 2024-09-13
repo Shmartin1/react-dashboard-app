@@ -30,7 +30,7 @@ function App() {
                   <Route path="/tasks" element={<TaskManager />} />
                   <Route path="/charts" element={<ChartWidget />} />
                   <Route path="/activities" element={<ActivityFeed />} />
-                  <Route path="settings" element={<Settings />} />
+                  <Route path="/settings" element={<Settings />} />
                 </Routes>
               </main>
             </div>
