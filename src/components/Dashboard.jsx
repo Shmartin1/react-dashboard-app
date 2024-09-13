@@ -5,6 +5,9 @@ import RecentMessageWidget from './widgets/RecentMessagesWidget';
 import ProgressWidget from './widgets/ProgressWidget';
 import DateTimeWidget from './widgets/DateTimeWidget';
 import ChartWidget from './widgets/ChartWidget';
+import WeatherWidget from './widgets/WeatherWidget';
+import RecentActivityWidget from './widgets/RecentActivityWidget';
+import NotificationWidget from './widgets/NotificationWidget';
 
 function Dashboard() {
   return (
@@ -18,14 +21,23 @@ function Dashboard() {
       {/* Chart Widget*/}
       <ChartWidget />
 
-      {/* Recent Messages Widget */}
-      <RecentMessageWidget />
-
       {/* Progress Bar Widget */}
       <ProgressWidget />
+    
+      {/* Weather Widget */}
+      <WeatherWidget />
 
       {/* Calendar Widget */}
       <DateTimeWidget />
+
+      {/* Recent Messages Widget */}
+      <RecentMessageWidget />
+
+      {/* Recent Activity Widget*/}
+      <RecentActivityWidget />
+
+      {/* Notification Widget*/}
+      <NotificationWidget />
     </div>
   );
 }
