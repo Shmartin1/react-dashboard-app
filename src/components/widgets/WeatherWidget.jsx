@@ -31,9 +31,10 @@ function WeatherWidget({ className }) {
 
   const [icon, setIcon] = useState(weatherIcons.sunny);
   const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState([]); 
+  const [suggestions, setSuggestions] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState('Seattle');
   const [isVisible, setIsVisible] = useState(true);
+  const [temperatureUnit, setTemperatureUnit] = useState('imperial');
   const apiKey = 'a0182485c7d1f3c74a26769f6304f312';
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function WeatherWidget({ className }) {
         setIsVisible(false);
 
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${selectedLocation}&units=metric&appid=${apiKey}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${selectedLocation}&units=${temperatureUnit}&appid=${apiKey}`
         );
         const data = response.data;
 
@@ -62,7 +63,7 @@ function WeatherWidget({ className }) {
     };
 
     fetchWeatherData();
-  }, [selectedLocation]);
+  }, [selectedLocation, temperatureUnit]);
 
   const fetchCitySuggestions = async (query) => {
     try {
@@ -102,6 +103,10 @@ function WeatherWidget({ className }) {
     setSuggestions([]);
   };
 
+  const handleUnitChange = (e) => {
+    setTemperatureUnit(e.target.value);
+  };
+
   return (
     <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}>
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Current Weather</h2>
@@ -123,11 +128,25 @@ function WeatherWidget({ className }) {
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <p className="text-2xl font-bold dark:text-gray-300">{weather.temperature}°C</p>
+        <p className="text-2xl font-bold dark:text-gray-300">
+          {weather.temperature}°{temperatureUnit === 'metric' ? 'C' : 'F'}
+        </p>
         <p className="text-gray-500 dark:text-gray-300 capitalize">{weather.condition}</p>
         <p className="text-gray-500 dark:text-gray-300">
           {weather.city}, {weather.country}
         </p>
+      </div>
+
+      {/* Celsius/Fahrenheit Dropdown */}
+      <div className="mt-4">
+        <select
+          value={temperatureUnit}
+          onChange={handleUnitChange}
+          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-4 rounded w-37"
+        >
+          <option value="imperial">Fahrenheit (°F)</option>
+          <option value="metric">Celsius (°C)</option>
+        </select>
       </div>
 
       {/* Search bar */}
@@ -144,7 +163,7 @@ function WeatherWidget({ className }) {
         {suggestions.length > 0 && (
           <ul
             className="border dark:border-gray-600 rounded bg-white dark:bg-gray-700 mt-2 max-h-32 overflow-y-scroll"
-            style={{ maxHeight: '8rem' }} // Limit the height and enable scrolling
+            style={{ maxHeight: '8rem' }}
           >
             {suggestions.map((location, index) => (
               <li
