@@ -3,7 +3,7 @@ import React from 'react';
 function TaskSummaryWidget({ className }) {
     return (
         <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg pr-6 ${className}`}>
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 mt-6 ml-4">Task Summary</h2>
+            <h2 className="widget-title mt-6 ml-4">Task Summary</h2>
             <ul className="space-y-4 ml-4">
                 <li className="flex flex-row justify-between items-center">
                     <p className="text-gray-700  dark:text-gray-200 whitespace-nowrap pr-5">Add dark mode</p>

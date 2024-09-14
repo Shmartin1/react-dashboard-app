@@ -109,7 +109,7 @@ function WeatherWidget({ className }) {
 
   return (
     <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}>
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Current Weather</h2>
+      <h2 className="widget-title">Current Weather</h2>
 
       {/* Weather Icon */}
       <div className="flex justify-center mb-4 relative">

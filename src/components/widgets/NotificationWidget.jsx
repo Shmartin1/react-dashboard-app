@@ -49,7 +49,7 @@ function NotificationWidget({ className }) {
 
     return (
         <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 ${className}`}>
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Notifications</h2>
+            <h2 className="widget-title">Notifications</h2>
             <ul className="space-y-2">
                 {notifications.map((notification) => (
                     <li
