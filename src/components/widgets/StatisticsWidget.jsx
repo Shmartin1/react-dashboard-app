@@ -3,7 +3,7 @@ import React from 'react';
 function StatisticsWidget({ className }) {
     return (
       <div className={`bg-white shadow-md rounded-lg p-6 space-y-8 ${className}`}>
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Statistics</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Statistics</h2>
 
         {/* First Row*/}
         <div className="grid grid-cols-3 gap-4 mb-4">

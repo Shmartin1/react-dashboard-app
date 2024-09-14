@@ -4,7 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add custom styles if needed */
+/* Font Imports */
+@font-face {
+  font-family: 'HelveticaNeueRoman';
+  src: url('./assets/fonts/HelveticaNeueRoman.otf') format('truetype');
+}
+
 
 /* Example toggle checkbox styling */
 .toggle-checkbox {
