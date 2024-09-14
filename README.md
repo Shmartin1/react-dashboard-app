@@ -21,9 +21,11 @@ Tailwind CSS: Utility-first CSS framework for modern and responsive design.
 ### Run Locally:
 1. Clone the repository:
    ```git clone https://github.com/Shmartin1/react-dashboard-app.git```
-2. Navigate to project directory:
+2. Install `nodejs`
+   ```https://nodejs.org/en/download/package-manager```
+3. Navigate to project directory:
    ```cd react-dashboard-app```
-3. Install dependencies:
+4. Install dependencies:
    ```npm install```
-4. Start local server:
+5. Start local server:
    ```npm start```
