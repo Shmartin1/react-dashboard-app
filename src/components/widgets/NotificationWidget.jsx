@@ -3,7 +3,7 @@ import React from 'react';
 function NotificationWidget({ className }) {
     return (
         <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
-            <h2>Notifications</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Notifications</h2>
             <ul className="space-y-2">
                 <li className="bg-red-100 text-red-800 p-3 rounded-lg">
                     <p>Critical: Disk space low...</p>
