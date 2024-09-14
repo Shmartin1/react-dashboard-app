@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 
-// Automatically generate all timezones
 const timezones = Intl.supportedValuesOf('timeZone');
 
 function DateTimeWidget({ className }) {
@@ -12,93 +11,67 @@ function DateTimeWidget({ className }) {
   const [isTransitioningOut, setIsTransitioningOut] = useState(false);
   const [isTransitioningIn, setIsTransitioningIn] = useState(false);
 
-  // Update time every second
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  // Format time based on the selected timezone
-  const formatTime = (date, timezone) => {
-    return new Intl.DateTimeFormat('en-US', {
+  const formatTime = (date, timezone) =>
+    new Intl.DateTimeFormat('en-US', {
       timeZone: timezone,
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
     }).format(date);
-  };
 
-  const formatDate = (date, timezone) => {
+  const formatDate = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = new Intl.DateTimeFormat('en-US', options).formatToParts(date);
-  
-    return formattedDate.map((part, index) => {
-      if (part.type === 'month') {
-        return (
+    return new Intl.DateTimeFormat('en-US', options)
+      .formatToParts(date)
+      .map((part, index) =>
+        part.type === 'month' ? (
           <span key={index} className="text-4xl font-semibold">
             {part.value}
           </span>
-        );
-      }
-      return part.value;
-    });
+        ) : (
+          part.value
+        )
+      );
   };
-  
 
   const toggleClockMode = () => {
     setIsTransitioningOut(true);
-
     setTimeout(() => {
-      setIsAnalog(!isAnalog);
+      setIsAnalog((prev) => !prev);
       setIsTransitioningOut(false);
       setIsTransitioningIn(true);
       setTimeout(() => setIsTransitioningIn(false), 300);
     }, 300);
   };
 
-  const handleTimezoneChange = (event) => {
-    setTimezone(event.target.value);
-  };
-
   return (
-    <div
-      className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}
-    >
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
-        Current Date & Time
-      </h2>
+    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}>
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">Current Date & Time</h2>
 
       <div className="flex items-center justify-between">
         <div
           className={`text-gray-700 dark:text-gray-200 text-4xl transition-all duration-300 ease-out transform ${
             isTransitioningOut ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'
           } ${isTransitioningIn ? 'opacity-100' : 'opacity-0'}`}
-          style={{
-            fontFamily: "'HelveticaNeueRoman', sans-serif",
-            height: '160px',
-            width: '100%',
-          }}
+          style={{ fontFamily: "'HelveticaNeueRoman', sans-serif", height: '160px', width: '100%' }}
         >
           {isAnalog ? (
-            // Display the analog clock
             <div className="flex justify-center items-center">
-              <div className="ml-7">
-                <Clock value={currentTime} size={150} />
-              </div>
+              <Clock value={currentTime} size={150} className="mr-7" />
             </div>
           ) : (
-            // Display the digital clock with formatted time
             <div className="mt-4">
-              {formatDate(currentTime, timezone)} <br />
+              {formatDate(currentTime)} <br />
               {formatTime(currentTime, timezone)}
             </div>
           )}
         </div>
 
-        {/* Arrow to toggle between digital and analog */}
         <div className="ml-4 absolute top-1/2 transform -translate-y-1/2 right-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -113,11 +86,10 @@ function DateTimeWidget({ className }) {
         </div>
       </div>
 
-      {/* Timezone Dropdown */}
       <div className="mt-4">
         <select
           value={timezone}
-          onChange={handleTimezoneChange}
+          onChange={(e) => setTimezone(e.target.value)}
           className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-1 rounded w-52 text-sm"
         >
           {timezones.map((tz) => (
