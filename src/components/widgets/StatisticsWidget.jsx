@@ -1,43 +1,30 @@
 import React from 'react';
 
 function StatisticsWidget({ className }) {
-    return (
-      <div className={`bg-white shadow-md rounded-lg p-6 space-y-8 ${className}`}>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Statistics</h2>
+  const stats = [
+    { value: '1,245', label: 'Users' },
+    { value: '563', label: 'Tasks' },
+    { value: '87%', label: 'Completion' },
+    { value: '150', label: 'Projects' },
+    { value: '24', label: 'Signups' },
+    { value: '98%', label: 'Satisfaction' },
+  ];
 
-        {/* First Row*/}
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">1,245</p>
-            <p className="text-gray-500">Users</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">563</p>
-            <p className="text-gray-500">Tasks</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">87%</p>
-            <p className="text-gray-500">Completion</p>
-          </div>
-        </div>
+  return (
+    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 space-y-8 ${className}`}>
+      <h2 className="dark:text-gray-200 text-2xl font-semibold text-gray-800 mb-4">Statistics</h2>
 
-        {/* Second Row*/}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">150</p>
-            <p className="text-gray-500">Projects</p>
+      {/* Statistics Rows */}
+      <div className="grid grid-cols-3 gap-4">
+        {stats.map((stat, index) => (
+          <div key={index} className="flex flex-col items-center mb-4">
+            <p className="text-2xl font-bold text-gray-900 dark:text-gray-300">{stat.value}</p>
+            <p className="text-gray-500 dark:text-gray-200">{stat.label}</p>
           </div>
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">24</p>
-            <p className="text-gray-500 items-center">Signups</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold text-gray-900">98%</p>
-            <p className="text-gray-500">Satisfaction</p>
-          </div>
-        </div>
+        ))}
       </div>
-    );
+    </div>
+  );
 }
 
 export default StatisticsWidget;

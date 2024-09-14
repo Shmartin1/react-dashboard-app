@@ -28,12 +28,16 @@ function DateTimeWidget({ className }) {
   };
 
   return (
-    <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">Current Date & Time</h2>
+    <div
+      className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}
+    >
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+        Current Date & Time
+      </h2>
 
       <div className="flex items-center justify-between">
         <div
-          className={`text-gray-700 text-4xl transition-all duration-300 ease-out transform ${
+          className={`text-gray-700 dark:text-gray-200 text-4xl transition-all duration-300 ease-out transform ${
             isTransitioningOut ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'
           } ${isTransitioningIn ? 'opacity-100' : 'opacity-0'}`}
           style={{
@@ -62,7 +66,7 @@ function DateTimeWidget({ className }) {
         <div className="ml-15 -mt-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 text-gray-700 cursor-pointer transform transition-transform duration-300 hover:text-blue-500 hover:scale-110"
+            className="h-10 w-10 text-gray-700 dark:text-blue-200 cursor-pointer transform transition-transform duration-300 hover:text-blue-500 hover:scale-110"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
