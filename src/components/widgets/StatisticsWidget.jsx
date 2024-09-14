@@ -11,7 +11,7 @@ function StatisticsWidget({ className }) {
   ];
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 space-y-8 ${className}`}>
+    <div className={`widget-card space-y-8 ${className}`}>
       <h2 className="dark:text-gray-200 text-2xl font-semibold text-gray-800 mb-4">Statistics</h2>
 
       {/* Statistics Rows */}

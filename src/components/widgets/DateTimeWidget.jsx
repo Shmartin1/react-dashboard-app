@@ -50,7 +50,7 @@ function DateTimeWidget({ className }) {
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}>
+    <div className={`widget-card ${className}`}>
       <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">Current Date & Time</h2>
 
       <div className="flex items-center justify-between">

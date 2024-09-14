@@ -55,6 +55,10 @@
   .widget-title {
     @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4
   }
+
+  .widget-card {
+    @apply bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300
+  }
 }
 
 /* Dark mode specific styles */

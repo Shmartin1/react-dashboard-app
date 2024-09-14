@@ -2,7 +2,7 @@ import React from 'react';
 
 function RecentMessageWidget({ className }) {
     return (
-        <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 ${className}`}>
+        <div className={`widget-card ${className}`}>
         <h2 className="widget-title">Recent Messages</h2>
         <ul className="space-y-2">
           <li className="recent-message">
