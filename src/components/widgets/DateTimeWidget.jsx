@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 
+// Automatically generate all timezones
+const timezones = Intl.supportedValuesOf('timeZone');
+
 function DateTimeWidget({ className }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isAnalog, setIsAnalog] = useState(false);
+  const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); // Default to local timezone
   const [isTransitioningOut, setIsTransitioningOut] = useState(false);
   const [isTransitioningIn, setIsTransitioningIn] = useState(false);
 
+  // Update time every second
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -15,6 +20,33 @@ function DateTimeWidget({ className }) {
 
     return () => clearInterval(timer);
   }, []);
+
+  // Format time based on the selected timezone
+  const formatTime = (date, timezone) => {
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: timezone,
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }).format(date);
+  };
+
+  const formatDate = (date, timezone) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).formatToParts(date);
+  
+    return formattedDate.map((part, index) => {
+      if (part.type === 'month') {
+        return (
+          <span key={index} className="text-4xl font-semibold">
+            {part.value}
+          </span>
+        );
+      }
+      return part.value;
+    });
+  };
+  
 
   const toggleClockMode = () => {
     setIsTransitioningOut(true);
@@ -27,11 +59,15 @@ function DateTimeWidget({ className }) {
     }, 300);
   };
 
+  const handleTimezoneChange = (event) => {
+    setTimezone(event.target.value);
+  };
+
   return (
     <div
       className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300 ${className}`}
     >
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
         Current Date & Time
       </h2>
 
@@ -54,16 +90,16 @@ function DateTimeWidget({ className }) {
               </div>
             </div>
           ) : (
-            // Display the digital clock
+            // Display the digital clock with formatted time
             <div className="mt-4">
-              {currentTime.toLocaleDateString()} <br />
-              {currentTime.toLocaleTimeString()}
+              {formatDate(currentTime, timezone)} <br />
+              {formatTime(currentTime, timezone)}
             </div>
           )}
         </div>
 
         {/* Arrow to toggle between digital and analog */}
-        <div className="ml-15 -mt-10">
+        <div className="ml-4 absolute top-1/2 transform -translate-y-1/2 right-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-10 w-10 text-gray-700 dark:text-blue-200 cursor-pointer transform transition-transform duration-300 hover:text-blue-500 hover:scale-110"
@@ -75,6 +111,21 @@ function DateTimeWidget({ className }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
           </svg>
         </div>
+      </div>
+
+      {/* Timezone Dropdown */}
+      <div className="mt-4">
+        <select
+          value={timezone}
+          onChange={handleTimezoneChange}
+          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-1 rounded w-52 text-sm"
+        >
+          {timezones.map((tz) => (
+            <option key={tz} value={tz}>
+              {tz}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );
