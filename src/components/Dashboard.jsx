@@ -13,31 +13,31 @@ function Dashboard() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {/* Statistics Widget */}
-      <StatisticsWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <StatisticsWidget className="widget-container" />
 
       {/* Task Summary Widget */}
-      <TaskSummaryWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <TaskSummaryWidget className="widget-container" />
 
       {/* Chart Widget */}
-      <ChartWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <ChartWidget className="widget-container" />
 
       {/* Progress Bar Widget */}
-      <ProgressWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <ProgressWidget className="widget-container" />
     
       {/* Weather Widget */}
-      <WeatherWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <WeatherWidget className="widget-container" />
 
       {/* Calendar Widget */}
-      <DateTimeWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <DateTimeWidget className="widget-container" />
 
       {/* Recent Messages Widget */}
-      <RecentMessageWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <RecentMessageWidget className="widget-container" />
 
       {/* Recent Activity Widget */}
-      <RecentActivityWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <RecentActivityWidget className="widget-container" />
 
       {/* Notification Widget */}
-      <NotificationWidget className="shadow-md hover:shadow-xl transition-shadow duration-300" />
+      <NotificationWidget className="widget-container" />
     </div>
   );
 }

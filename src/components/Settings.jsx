@@ -2,35 +2,40 @@ import React, { useState, useEffect } from 'react';
 
 function Settings() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Get user preference
   useEffect(() => {
     const darkModePreference = localStorage.getItem('darkMode');
-    
-    if (darkModePreference === 'enabled') {
-      setIsDarkMode(true);
+    const shouldBeDarkMode = darkModePreference === 'enabled';
+    setIsDarkMode(shouldBeDarkMode);
+    if (shouldBeDarkMode) {
       document.body.classList.add('dark');
     } else {
-      setIsDarkMode(false);
       document.body.classList.remove('dark');
     }
+    setIsLoaded(true);
   }, []);
 
-  // Toggle dark mode
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-    if (!isDarkMode) {
-      document.body.classList.add('dark');
-      localStorage.setItem('darkMode', 'enabled');
-    } else {
-      document.body.classList.remove('dark');
-      localStorage.setItem('darkMode', 'disabled');
-    }
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem('darkMode', newMode ? 'enabled' : 'disabled');
+      if (newMode) {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+      return newMode;
+    });
   };
+
+  if (!isLoaded) {
+    return null; // or a loading indicator
+  }
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-200">Settings Page</h1>
+      <h1 className="widget-title">Settings Page</h1>
       
       {/* Dark Mode Toggle */}
       <div className="mt-4">

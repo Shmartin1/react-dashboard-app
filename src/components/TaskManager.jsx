@@ -20,7 +20,7 @@ function TaskManager() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Task Manager</h2>
+      <h2 className="text-3xl widget-title">Task Manager</h2>
       <input
         type="text"
         value={task}

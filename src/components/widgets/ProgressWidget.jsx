@@ -25,8 +25,8 @@ function ProgressWidget({ className }) {
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 ${className}`}>
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Project Progress</h2>
+    <div className={`widget-card ${className}`}>
+      <h2 className="widget-title">Project Progress</h2>
       
       {/* Progress Bar */}
       <p className="text-gray-700 dark:text-gray-200 mb-2">Dashboard Redisgn</p>
