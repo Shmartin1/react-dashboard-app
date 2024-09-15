@@ -150,7 +150,7 @@ function WeatherWidget({ className }) {
       </div>
 
       {/* Search bar */}
-      <div className="mt-6">
+      <div className="mt-6 relative">
         <input
           type="text"
           value={searchTerm}
@@ -162,8 +162,10 @@ function WeatherWidget({ className }) {
         {/* Suggestions list */}
         {suggestions.length > 0 && (
           <ul
-            className="border dark:border-gray-600 rounded bg-white dark:bg-gray-700 mt-2 max-h-32 overflow-y-scroll"
-            style={{ maxHeight: '8rem' }}
+            className="absolute left-0 right-0 border dark:border-gray-600 rounded bg-white dark:bg-gray-700 mt-1 max-h-32 overflow-y-auto z-10"
+            style={{
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            }}
           >
             {suggestions.map((location, index) => (
               <li
