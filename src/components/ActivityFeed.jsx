@@ -14,7 +14,7 @@ function ActivityFeed() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Recent Activities</h2>
+      <h2 className="text-3xl widget-title">Recent Activities</h2>
       <ul>
         {activities.map((activity) => (
           <li key={activity.id}>{activity.activity}</li>

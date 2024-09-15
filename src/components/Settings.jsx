@@ -35,7 +35,7 @@ function Settings() {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-200">Settings Page</h1>
+      <h1 className="widget-title">Settings Page</h1>
       
       {/* Dark Mode Toggle */}
       <div className="mt-4">
