@@ -49,11 +49,11 @@
   }
 
   .timestamp-label {
-    @apply text-xs text-gray-500 dark:text-gray-400;
+    @apply text-xs text-gray-800 dark:text-gray-400 select-none;
   }
 
   .widget-title {
-    @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4;
+    @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 select-none;
   }
 
   .widget-card {
@@ -62,6 +62,10 @@
 
   .widget-container {
     @apply shadow-md hover:shadow-xl transition-shadow duration-300;
+  }
+
+  .message-text {
+    @apply text-gray-700 dark:text-gray-300 select-none;
   }
 }
 
