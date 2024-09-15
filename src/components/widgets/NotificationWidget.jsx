@@ -71,8 +71,8 @@ function NotificationWidget({ className }) {
                         onTouchMove={(e) => handleSwipeMove(e, notification.id)}
                         onTouchEnd={() => handleSwipeEnd(notification.id)}
                     >
-                        <p>{notification.text}</p>
-                        <span className="text-xs text-gray-800">{notification.time}</span>
+                        <p className="select-none">{notification.text}</p>
+                        <span className="timestamp-label">{notification.time}</span>
                     </li>
                 ))}
             </ul>
