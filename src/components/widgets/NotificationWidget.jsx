@@ -9,6 +9,7 @@ function NotificationWidget({ className }) {
 
     const [swipeState, setSwipeState] = useState({});
     const [fadingIn, setFadingIn] = useState({});
+    const [fadingOut, setFadingOut] = useState({});
 
     const handleSwipeStart = (e, id) => {
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -21,14 +22,18 @@ function NotificationWidget({ className }) {
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const deltaX = clientX - swipeState[id].startX;
 
+        // Prevent dragging to the left (negative deltaX)
+        if (deltaX < 0) return;
+
         setSwipeState({ ...swipeState, [id]: { ...swipeState[id], currentX: deltaX } });
     };
 
     const handleSwipeEnd = (id) => {
-        const threshold = 150;
+        const threshold = 100;
         const deltaX = swipeState[id]?.currentX || 0;
 
         if (deltaX > threshold) {
+            setFadingOut((prevState) => ({ ...prevState, [id]: true }));
             // Move the notification to the bottom if swiped past the threshold
             setNotifications((prevNotifications) => {
                 const swipedNotification = prevNotifications.find((n) => n.id === id);
@@ -49,7 +54,11 @@ function NotificationWidget({ className }) {
 
     return (
         <div className={`widget-card ${className}`}>
-            <h2 className="widget-title">Notifications</h2>
+            <div className="flex justify-between items-center">
+                <h2 className="widget-title">Notifications</h2>
+                <span className="timestamp-label mb-3">(Swipe to clear)</span>
+            </div>
+            
             <ul className="space-y-2">
                 {notifications.map((notification) => (
                     <li
@@ -59,9 +68,10 @@ function NotificationWidget({ className }) {
                         }`}
                         style={{
                             transform: `translateX(${swipeState[notification.id]?.currentX || 0}px)`,
+                            opacity: fadingOut[notification.id] ? 0 : 1,
                             transition: swipeState[notification.id]?.swiping
                                 ? 'none'
-                                : 'transform 0.5s ease-out, opacity 1s',
+                                : 'transform 1s ease-out, opacity 1s ease-out',
                             opacity: fadingIn[notification.id] ? 0 : 1,
                         }}
                         onMouseDown={(e) => handleSwipeStart(e, notification.id)}
