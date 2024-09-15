@@ -12,7 +12,7 @@ function StatisticsWidget({ className }) {
 
   return (
     <div className={`widget-card space-y-8 ${className}`}>
-      <h2 className="dark:text-gray-200 text-2xl font-semibold text-gray-800 mb-4">Statistics</h2>
+      <h2 className="widget-title">Statistics</h2>
 
       {/* Statistics Rows */}
       <div className="grid grid-cols-3 gap-4">
