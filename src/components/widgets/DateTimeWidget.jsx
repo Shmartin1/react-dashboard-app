@@ -7,7 +7,7 @@ const timezones = Intl.supportedValuesOf('timeZone');
 function DateTimeWidget({ className }) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isAnalog, setIsAnalog] = useState(false);
-  const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone); // Default to local timezone
+  const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
   const [isTransitioningOut, setIsTransitioningOut] = useState(false);
   const [isTransitioningIn, setIsTransitioningIn] = useState(false);
 
@@ -16,16 +16,20 @@ function DateTimeWidget({ className }) {
     return () => clearInterval(timer);
   }, []);
 
-  const formatTime = (date, timezone) =>
+  const getTimeInTimezone = (date, timeZone) => {
+    return new Date(date.toLocaleString('en-US', { timeZone }));
+  };
+
+  const formatTime = (date, timeZone) =>
     new Intl.DateTimeFormat('en-US', {
-      timeZone: timezone,
+      timeZone: timeZone,
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
     }).format(date);
 
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formatDate = (date, timeZone) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone };
     return new Intl.DateTimeFormat('en-US', options)
       .formatToParts(date)
       .map((part, index) =>
@@ -49,33 +53,35 @@ function DateTimeWidget({ className }) {
     }, 300);
   };
 
+  const timeInSelectedTimezone = getTimeInTimezone(currentTime, timezone);
+
   return (
     <div className={`widget-card ${className}`}>
-      <h2 className="widget-title">Current Date & Time</h2>
+      <h2 className="widget-title mb-1">Current Date & Time</h2>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between relative">
         <div
           className={`text-gray-700 dark:text-gray-200 text-4xl transition-all duration-300 ease-out transform ${
             isTransitioningOut ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'
           } ${isTransitioningIn ? 'opacity-100' : 'opacity-0'}`}
-          style={{ fontFamily: "'HelveticaNeueRoman', sans-serif", height: '160px', width: '100%' }}
+          style={{ fontFamily: "'HelveticaNeueRoman', sans-serif", height: '160px', width: 'calc(100% - 40px)' }}
         >
           {isAnalog ? (
-            <div className="flex justify-center items-center">
-              <Clock value={currentTime} size={150} className="mr-7" />
+            <div className="flex justify-center items-center h-full">
+              <Clock value={timeInSelectedTimezone} size={150} />
             </div>
           ) : (
             <div className="mt-4">
-              {formatDate(currentTime)} <br />
+              {formatDate(currentTime, timezone)} <br />
               {formatTime(currentTime, timezone)}
             </div>
           )}
         </div>
 
-        <div className="ml-4 absolute top-1/2 transform -translate-y-1/2 right-10">
+        <div className="absolute top-1/2 transform -translate-y-1/2 right-0 w-10 h-10 flex items-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10 text-gray-700 dark:text-blue-200 cursor-pointer transform transition-transform duration-300 hover:text-blue-500 hover:scale-110"
+            className="h-10 w-10 text-gray-700 dark:text-blue-200 cursor-pointer transition-colors duration-300 hover:text-blue-500"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -86,7 +92,7 @@ function DateTimeWidget({ className }) {
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-6">
         <select
           value={timezone}
           onChange={(e) => setTimezone(e.target.value)}
