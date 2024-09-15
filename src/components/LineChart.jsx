@@ -50,7 +50,7 @@ function LineChart() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2 className="text-3xl widget-title">Task Completion Trends</h2>
+      <h2 className="widget-title">Task Completion Trends</h2>
       <Line data={data} options={options} />
     </div>
   );
