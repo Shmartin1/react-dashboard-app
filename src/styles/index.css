@@ -75,6 +75,14 @@
   .flex-justify-center {
     @apply flex justify-between items-center
   }
+
+  .task-summary-label {
+    @apply text-gray-700 dark:text-gray-200
+  }
+
+  .header-link {
+    @apply text-gray-200 hover:text-white transition-colors
+  }
 }
 
 /* Dark mode specific styles */

@@ -8,10 +8,10 @@ function Header() {
         <h1 className="text-2x1 font-semibold">React Dashboard</h1>
 
         <div className="space-x-4 flex items-center">
-          <Link to="/profile" className="text-gray-200 hover:text-white transition-colors">
+          <Link to="/profile" className="header-link">
             Profile
           </Link>
-          <Link to="/settings" className="text-gray-200 hover:text-white transition-colors">
+          <Link to="/settings" className="header-link">
             Settings
           </Link>
         </div>

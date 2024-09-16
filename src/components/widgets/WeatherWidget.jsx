@@ -112,7 +112,7 @@ function WeatherWidget({ className }) {
       <h2 className="widget-title">Current Weather</h2>
 
       {/* Weather Icon */}
-      <div className="flex justify-center mb-4 relative">
+      <div className="flex-justify-center mb-4 relative">
         <img
           src={icon}
           alt={weather.condition}
