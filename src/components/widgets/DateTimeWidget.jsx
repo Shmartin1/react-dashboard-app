@@ -59,7 +59,7 @@ function DateTimeWidget({ className }) {
     <div className={`widget-card ${className}`}>
       <h2 className="widget-title mb-1">Current Date & Time</h2>
 
-      <div className="flex items-center justify-between relative">
+      <div className="flex-justify-center relative">
         <div
           className={`text-gray-700 dark:text-gray-200 text-4xl transition-all duration-300 ease-out transform ${
             isTransitioningOut ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'

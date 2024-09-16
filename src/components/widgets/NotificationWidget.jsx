@@ -54,7 +54,7 @@ function NotificationWidget({ className }) {
 
     return (
         <div className={`widget-card ${className}`}>
-            <div className="flex justify-between items-center">
+            <div className="flex-justify-center">
                 <h2 className="widget-title">Notifications</h2>
                 <span className="timestamp-label mb-3">(Swipe to clear)</span>
             </div>
