@@ -1,4 +1,3 @@
-// src/store/slices/statisticsSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {

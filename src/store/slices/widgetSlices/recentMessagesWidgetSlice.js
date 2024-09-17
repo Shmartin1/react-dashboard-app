@@ -1,4 +1,3 @@
-// src/store/slices/recentMessagesSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
