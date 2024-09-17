@@ -9,7 +9,8 @@ import recentMessagesReducer from './slices/widgetSlices/recentMessagesWidgetSli
 import recentActivityReducer from './slices/recentActivitySlice';
 import progressReducer from './slices/widgetSlices/progressWidgetSlice';
 import chartReducer from './slices/widgetSlices/chartWidgetSlice';
-import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice'
+import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice';
+import taskSummaryReducer from './slices/widgetSlices/taskSummaryWidgetSlice';
 
 export const store = configureStore({
   reducer: {
@@ -23,5 +24,6 @@ export const store = configureStore({
     progress: progressReducer,
     chart: chartReducer,
     dateTime: dateTimeReducer,
+    taskSummary: taskSummaryReducer,
   },
 });
