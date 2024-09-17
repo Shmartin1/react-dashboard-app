@@ -1,25 +1,41 @@
 // src/components/ActivityFeed.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchActivities } from '../store/slices/recentActivitySlice';
 
 function ActivityFeed() {
-  const [activities, setActivities] = useState([]);
+  const dispatch = useDispatch();
+  const { activities, status, error } = useSelector((state) => state.recentActivity);
 
   useEffect(() => {
-    // Simulate API call to fetch activities
-    setActivities([
-      { id: 1, activity: 'User A completed Task 1' },
-      { id: 2, activity: 'User B completed Task 2' },
-    ]);
-  }, []);
+    if (status === 'idle') {
+      dispatch(fetchActivities());
+    }
+  }, [status, dispatch]);
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div style={{ padding: '20px' }}>
       <h2 className="text-3xl widget-title">Recent Activities</h2>
-      <ul>
-        {activities.map((activity) => (
-          <li key={activity.id}>{activity.activity}</li>
-        ))}
-      </ul>
+      {activities.length === 0 ? (
+        <p>No recent activities.</p>
+      ) : (
+        <ul>
+          {activities.map((activity) => (
+            <li key={activity.id} className="mb-2">
+              <span className="font-medium">{activity.text}</span>
+              <span className="text-sm text-gray-500 ml-2">{activity.timestamp}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
