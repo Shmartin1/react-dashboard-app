@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+// src/components/widgets/NotificationWidget.jsx
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+  moveNotificationToBottom,
+  clearNewStatus
+} from '../../store/slices/widgetSlices/notificationsWidgetSlice';
 
 function NotificationWidget({ className }) {
-    const [notifications, setNotifications] = useState([
-        { id: 1, text: 'Critical: Disk space low...', time: '10 minutes ago', bgColor: 'bg-red-100', textColor: 'text-red-800' },
-        { id: 2, text: 'Warning: High memory usage detected', time: '38 minutes ago', bgColor: 'bg-yellow-100', textColor: 'text-yellow-800' },
-        { id: 3, text: 'Info: New login from IP 192.168.1.1', time: '59 minutes ago', bgColor: 'bg-blue-100', textColor: 'text-blue-800' },
-    ]);
-
+    const dispatch = useDispatch();
+    const notifications = useSelector((state) => state.notifications.notifications);
     const [swipeState, setSwipeState] = useState({});
-    const [fadingIn, setFadingIn] = useState({});
-    const [fadingOut, setFadingOut] = useState({});
+
+    useEffect(() => {
+        // Clear new status after animation
+        notifications.forEach(notification => {
+            if (notification.isNew) {
+                setTimeout(() => {
+                    dispatch(clearNewStatus(notification.id));
+                }, 500); // Adjust this timing to match your CSS animation duration
+            }
+        });
+    }, [notifications, dispatch]);
 
     const handleSwipeStart = (e, id) => {
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -33,20 +44,7 @@ function NotificationWidget({ className }) {
         const deltaX = swipeState[id]?.currentX || 0;
 
         if (deltaX > threshold) {
-            setFadingOut((prevState) => ({ ...prevState, [id]: true }));
-            // Move the notification to the bottom if swiped past the threshold
-            setNotifications((prevNotifications) => {
-                const swipedNotification = prevNotifications.find((n) => n.id === id);
-                const remainingNotifications = prevNotifications.filter((n) => n.id !== id);
-
-                setFadingIn((prevState) => ({ ...prevState, [id]: true }));
-
-                return [...remainingNotifications, swipedNotification];
-            });
-
-            setTimeout(() => {
-                setFadingIn((prevState) => ({ ...prevState, [id]: false }));
-            }, 150);
+            dispatch(moveNotificationToBottom(id));
         }
 
         setSwipeState({ ...swipeState, [id]: { currentX: 0, swiping: false } });
@@ -63,16 +61,14 @@ function NotificationWidget({ className }) {
                 {notifications.map((notification) => (
                     <li
                         key={notification.id}
-                        className={`${notification.bgColor} ${notification.textColor} p-3 rounded-lg cursor-pointer ${
-                            fadingIn[notification.id] ? 'fade-in' : ''
+                        className={`${notification.bgColor} ${notification.textColor} p-3 rounded-lg cursor-pointer transition-all duration-500 ease-in-out ${
+                            notification.isNew ? 'opacity-0 translate-y-full' : 'opacity-100 translate-y-0'
                         }`}
                         style={{
                             transform: `translateX(${swipeState[notification.id]?.currentX || 0}px)`,
-                            opacity: fadingOut[notification.id] ? 0 : 1,
                             transition: swipeState[notification.id]?.swiping
                                 ? 'none'
-                                : 'transform 1s ease-out, opacity 1s ease-out',
-                            opacity: fadingIn[notification.id] ? 0 : 1,
+                                : 'transform 0.3s ease-out, opacity 0.5s ease-out, translate 0.5s ease-out',
                         }}
                         onMouseDown={(e) => handleSwipeStart(e, notification.id)}
                         onMouseMove={(e) => handleSwipeMove(e, notification.id)}
