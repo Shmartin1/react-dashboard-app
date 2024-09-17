@@ -1,34 +1,36 @@
-import React, { useState, useCallback} from 'react';
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+  removeMessage, 
+  setRemovingMessageId,
+  clearRemovingMessageId,
+  setReenteringMessageId,
+  clearReenteringMessageId,
+  reenterMessage
+} from '../../store/slices/widgetSlices/recentMessagesWidgetSlice';
 import { TrashIcon } from '@heroicons/react/solid';
 
 function RecentMessageWidget({ className }) {
-  const initialMessages = [
-    { id: 1, text: "New update available for the dashboard.", timestamp: "2 hours ago" },
-    { id: 2, text: "Meeting scheduled at 3 PM today.", timestamp: "5 hours ago" },
-    { id: 3, text: "New user signup: John Doe", timestamp: "1 day ago" }
-  ];
-
-  const [messages, setMessages] = useState(initialMessages);
-  const [removingMessageIds, setRemovingMessageIds] = useState([]);
-  const [reenteringMessageIds, setReenteringMessageIds] = useState([]);
+  const dispatch = useDispatch();
+  const { messages, removingMessageIds, reenteringMessageIds } = useSelector((state) => state.recentMessages);
 
   const removeAndReenterMessage = useCallback((id) => {
-    setRemovingMessageIds((prev) => [...prev, id]);
+    dispatch(setRemovingMessageId(id));
     
     setTimeout(() => {
-      setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
-      setRemovingMessageIds((prev) => prev.filter((msgId) => msgId !== id));
+      dispatch(removeMessage(id));
+      dispatch(clearRemovingMessageId(id));
       
       setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, initialMessages.find(msg => msg.id === id)]);
-        setReenteringMessageIds((prev) => [...prev, id]);
+        dispatch(reenterMessage(id));
+        dispatch(setReenteringMessageId(id));
         
         setTimeout(() => {
-          setReenteringMessageIds((prev) => prev.filter((msgId) => msgId !== id));
+          dispatch(clearReenteringMessageId(id));
         }, 800); // Duration of fade-in animation
       }, 300); // Short delay before re-entering
     }, 500); // Duration of swipe-out animation
-  }, []);
+  }, [dispatch]);
 
   const handleTrashClick = useCallback(() => {
     const animateMessagesSequentially = (index = 0) => {
