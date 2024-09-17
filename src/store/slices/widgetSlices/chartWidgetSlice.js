@@ -1,4 +1,3 @@
-// src/store/slices/chartSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Simulating an API call
@@ -30,7 +29,7 @@ const initialState = {
   error: null,
 };
 
-export const chartSlice = createSlice({
+export const chartWidgetSlice = createSlice({
   name: 'chart',
   initialState,
   reducers: {},
@@ -50,4 +49,4 @@ export const chartSlice = createSlice({
   },
 });
 
-export default chartSlice.reducer;
+export default chartWidgetSlice.reducer;

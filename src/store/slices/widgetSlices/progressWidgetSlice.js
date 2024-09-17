@@ -1,4 +1,3 @@
-// src/store/slices/progressSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -23,9 +22,22 @@ export const progressSlice = createSlice({
       state.progress = 0;
       state.isProgressing = false;
     },
+    incrementProgress: (state) => {
+      if (state.progress < 100) {
+        state.progress += 1;
+      } else {
+        state.isProgressing = false;
+      }
+    },
   },
 });
 
-export const { setProgress, startProgress, stopProgress, resetProgress } = progressSlice.actions;
+export const { 
+  setProgress, 
+  startProgress, 
+  stopProgress, 
+  resetProgress,
+  incrementProgress 
+} = progressSlice.actions;
 
 export default progressSlice.reducer;

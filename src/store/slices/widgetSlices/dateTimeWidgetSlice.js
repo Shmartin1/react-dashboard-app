@@ -1,4 +1,3 @@
-// src/store/slices/dateTimeSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -7,7 +6,7 @@ const initialState = {
   isAnalog: false,
 };
 
-export const dateTimeSlice = createSlice({
+export const dateTimeWidgetSlice = createSlice({
   name: 'dateTime',
   initialState,
   reducers: {
@@ -23,6 +22,6 @@ export const dateTimeSlice = createSlice({
   },
 });
 
-export const { updateCurrentTime, setTimezone, toggleClockMode } = dateTimeSlice.actions;
+export const { updateCurrentTime, setTimezone, toggleClockMode } = dateTimeWidgetSlice.actions;
 
-export default dateTimeSlice.reducer;
+export default dateTimeWidgetSlice.reducer;

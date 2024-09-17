@@ -8,7 +8,7 @@ const initialState = {
   ],
 };
 
-export const notificationsSlice = createSlice({
+export const notificationsWidgetSlice = createSlice({
   name: 'notifications',
   initialState,
   reducers: {
@@ -45,6 +45,6 @@ export const {
   moveNotificationToBottom, 
   clearNewStatus,
   clearNotifications 
-} = notificationsSlice.actions;
+} = notificationsWidgetSlice.actions;
 
-export default notificationsSlice.reducer;
+export default notificationsWidgetSlice.reducer;

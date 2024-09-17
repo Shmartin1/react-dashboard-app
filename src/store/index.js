@@ -7,7 +7,7 @@ import notificationsReducer from './slices/widgetSlices/notificationsWidgetSlice
 import statisticsReducer from './slices/statisticsSlice';
 import recentMessagesReducer from './slices/recentMessagesSlice';
 import recentActivityReducer from './slices/recentActivitySlice';
-import progressReducer from './slices/progressSlice';
+import progressReducer from './slices/widgetSlices/progressWidgetSlice';
 import chartReducer from './slices/widgetSlices/chartWidgetSlice';
 import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice'
 
