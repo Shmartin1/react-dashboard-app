@@ -8,6 +8,8 @@ import statisticsReducer from './slices/statisticsSlice';
 import recentMessagesReducer from './slices/recentMessagesSlice';
 import recentActivityReducer from './slices/recentActivitySlice';
 import progressReducer from './slices/progressSlice';
+import chartReducer from './slices/widgetSlices/chartWidgetSlice';
+import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice'
 
 export const store = configureStore({
   reducer: {
@@ -19,5 +21,7 @@ export const store = configureStore({
     recentMessages: recentMessagesReducer,
     recentActivity: recentActivityReducer,
     progress: progressReducer,
+    chart: chartReducer,
+    dateTime: dateTimeReducer,
   },
 });

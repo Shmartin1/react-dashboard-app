@@ -1,23 +1,35 @@
-import React, { useState, useEffect } from 'react';
+// src/components/widgets/DateTimeWidget.jsx
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateCurrentTime, setTimezone, toggleClockMode } from '../../store/slices/widgetSlices/dateTimeWidgetSlice';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 
 const timezones = Intl.supportedValuesOf('timeZone');
 
 function DateTimeWidget({ className }) {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [isAnalog, setIsAnalog] = useState(false);
-  const [timezone, setTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const dispatch = useDispatch();
+  const { currentTime, timezone, isAnalog } = useSelector((state) => state.dateTime);
   const [isTransitioningOut, setIsTransitioningOut] = useState(false);
   const [isTransitioningIn, setIsTransitioningIn] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    const timer = setInterval(() => dispatch(updateCurrentTime()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [dispatch]);
 
-  const getTimeInTimezone = (date, timeZone) => {
-    return new Date(date.toLocaleString('en-US', { timeZone }));
+  const handleTimezoneChange = (e) => {
+    dispatch(setTimezone(e.target.value));
+  };
+
+  const handleClockModeToggle = () => {
+    setIsTransitioningOut(true);
+    setTimeout(() => {
+      dispatch(toggleClockMode());
+      setIsTransitioningOut(false);
+      setIsTransitioningIn(true);
+      setTimeout(() => setIsTransitioningIn(false), 300);
+    }, 300);
   };
 
   const formatTime = (date, timeZone) =>
@@ -43,17 +55,7 @@ function DateTimeWidget({ className }) {
       );
   };
 
-  const toggleClockMode = () => {
-    setIsTransitioningOut(true);
-    setTimeout(() => {
-      setIsAnalog((prev) => !prev);
-      setIsTransitioningOut(false);
-      setIsTransitioningIn(true);
-      setTimeout(() => setIsTransitioningIn(false), 300);
-    }, 300);
-  };
-
-  const timeInSelectedTimezone = getTimeInTimezone(currentTime, timezone);
+  const timeInSelectedTimezone = new Date(currentTime);
 
   return (
     <div className={`widget-card ${className}`}>
@@ -72,8 +74,8 @@ function DateTimeWidget({ className }) {
             </div>
           ) : (
             <div className="mt-4">
-              {formatDate(currentTime, timezone)} <br />
-              {formatTime(currentTime, timezone)}
+              {formatDate(timeInSelectedTimezone, timezone)} <br />
+              {formatTime(timeInSelectedTimezone, timezone)}
             </div>
           )}
         </div>
@@ -85,7 +87,7 @@ function DateTimeWidget({ className }) {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            onClick={toggleClockMode}
+            onClick={handleClockModeToggle}
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
           </svg>
@@ -95,7 +97,7 @@ function DateTimeWidget({ className }) {
       <div className="mt-6">
         <select
           value={timezone}
-          onChange={(e) => setTimezone(e.target.value)}
+          onChange={handleTimezoneChange}
           className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-1 rounded w-52 text-sm"
         >
           {timezones.map((tz) => (
