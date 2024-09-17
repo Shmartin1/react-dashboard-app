@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchActivities } from '../../store/slices/recentActivitySlice';
 
 function RecentActivityWidget({ className }) {
+    const dispatch = useDispatch();
+    const { activities, status, error } = useSelector((state) => state.recentActivity);
+
+    useEffect(() => {
+        if (status === 'idle') {
+            dispatch(fetchActivities());
+        }
+    }, [status, dispatch]);
+
+    if (status === 'loading') {
+        return <div className={`widget-card ${className}`}>Loading recent activities...</div>;
+    }
+
+    if (status === 'failed') {
+        return <div className={`widget-card ${className}`}>Error: {error}</div>;
+    }
+
     return (
         <div className={`widget-card ${className}`}>
             <h2 className="widget-title">Recent Activity</h2>
-            <ul className="space-y-2">
-                <li className="recent-message">
-                    <p className="message-text">User John Doe completed task A</p>
-                    <span className="timestamp-label">2 hours ago</span>
-                </li>
-                <li className="recent-message">
-                    <p className="message-text">Server update deployed successfully</p>
-                    <span className="timestamp-label">4 hours ago</span>
-                </li>
-                <li className="recent-message">
-                    <p className="message-text">Meeting scheduled for tomorrow</p>
-                    <span className="timestamp-label">6 hours ago</span>
-                </li>
-            </ul>
+            {activities.length === 0 ? (
+                <p>No recent activities.</p>
+            ) : (
+                <ul className="space-y-2">
+                    {activities.map((activity) => (
+                        <li key={activity.id} className="recent-message">
+                            <p className="message-text">{activity.text}</p>
+                            <span className="timestamp-label">{activity.timestamp}</span>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 }

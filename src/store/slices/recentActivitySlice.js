@@ -1,4 +1,3 @@
-// src/store/slices/recentActivitySlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // Simulating an API call
@@ -6,8 +5,9 @@ const fetchActivitiesAPI = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
-        { id: 1, text: "User A completed Task 1", timestamp: "10 minutes ago" },
-        { id: 2, text: "User B completed Task 2", timestamp: "15 minutes ago" },
+        { id: 1, text: "User John Doe completed task A", timestamp: "2 hours ago" },
+        { id: 2, text: "Server update deployed successfully", timestamp: "4 hours ago" },
+        { id: 3, text: "Meeting scheduled for tomorrow", timestamp: "6 hours ago" }
       ]);
     }, 1000);
   });

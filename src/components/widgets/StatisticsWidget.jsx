@@ -1,4 +1,3 @@
-// src/components/widgets/StatisticsWidget.js
 import React from 'react';
 import { useSelector } from 'react-redux';
 

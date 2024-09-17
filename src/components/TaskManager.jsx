@@ -1,4 +1,3 @@
-// src/components/TaskManager.jsx
 import React, { useState } from 'react';
 
 function TaskManager() {

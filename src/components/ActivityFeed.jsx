@@ -1,4 +1,3 @@
-// src/components/ActivityFeed.jsx
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchActivities } from '../store/slices/recentActivitySlice';
