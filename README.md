@@ -18,6 +18,22 @@ A dynamic and fully responsive React Dashboard Application built using modern Re
 - Chart.js & React-Chartjs-2: For dynamic data visualization.
 Tailwind CSS: Utility-first CSS framework for modern and responsive design.
 
+## Environment Setup
+
+This project uses environment variables to manage sensitive information like API keys. Follow these steps to set up your environment:
+
+1. Copy the `.env.example` file and rename it to `.env`:
+
+   ```
+   cp .env.example .env
+   ```
+
+2. Open the `.env` file and replace `your_weather_api_key_here` with your actual OpenWeatherMap API key.
+
+3. Make sure never to commit your `.env` file to the repository. It should already be in the `.gitignore` file.
+
+Note: You'll need to obtain an API key from [OpenWeatherMap](https://openweathermap.org/api) to use the weather functionality.
+
 ### Run Locally:
 1. Clone the repository:
    ```git clone https://github.com/Shmartin1/react-dashboard-app.git```
