@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
   moveNotificationToBottom,
@@ -11,12 +11,11 @@ function NotificationWidget({ className }) {
     const [swipeState, setSwipeState] = useState({});
 
     useEffect(() => {
-        // Clear new status after animation
         notifications.forEach(notification => {
             if (notification.isNew) {
                 setTimeout(() => {
                     dispatch(clearNewStatus(notification.id));
-                }, 500); // Adjust this timing to match your CSS animation duration
+                }, 500);
             }
         });
     }, [notifications, dispatch]);
@@ -32,13 +31,12 @@ function NotificationWidget({ className }) {
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const deltaX = clientX - swipeState[id].startX;
 
-        // Prevent dragging to the left (negative deltaX)
         if (deltaX < 0) return;
 
         setSwipeState({ ...swipeState, [id]: { ...swipeState[id], currentX: deltaX } });
     };
 
-    const handleSwipeEnd = (id) => {
+    const handleSwipeEnd = useCallback((id) => {
         const threshold = 100;
         const deltaX = swipeState[id]?.currentX || 0;
 
@@ -46,11 +44,37 @@ function NotificationWidget({ className }) {
             dispatch(moveNotificationToBottom(id));
         }
 
-        setSwipeState({ ...swipeState, [id]: { currentX: 0, swiping: false } });
-    };
+        setSwipeState(prevState => ({
+            ...prevState,
+            [id]: { currentX: 0, swiping: false }
+        }));
+    }, [dispatch, swipeState]);
+
+    const handleMouseLeave = useCallback(() => {
+        Object.keys(swipeState).forEach(id => {
+            if (swipeState[id].swiping) {
+                handleSwipeEnd(Number(id));
+            }
+        });
+    }, [swipeState, handleSwipeEnd]);
+
+    useEffect(() => {
+        const handleGlobalMouseUp = () => {
+            Object.keys(swipeState).forEach(id => {
+                if (swipeState[id].swiping) {
+                    handleSwipeEnd(Number(id));
+                }
+            });
+        };
+
+        window.addEventListener('mouseup', handleGlobalMouseUp);
+        return () => {
+            window.removeEventListener('mouseup', handleGlobalMouseUp);
+        };
+    }, [swipeState, handleSwipeEnd]);
 
     return (
-        <div className={`widget-card ${className}`}>
+        <div className={`widget-card ${className}`} onMouseLeave={handleMouseLeave}>
             <div className="flex-justify-center">
                 <h2 className="widget-title">Notifications</h2>
                 <span className="timestamp-label mb-3">(Swipe to clear)</span>
