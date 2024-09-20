@@ -1,5 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// src/components/widgets/WeatherWidget.jsx
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { 
+  fetchWeatherData, 
+  fetchCitySuggestions, 
+  setSearchTerm, 
+  setSelectedLocation, 
+  setTemperatureUnit, 
+  setIsVisible,
+  setIsTransitioning,
+  clearSuggestions,
+  applyNewWeather
+} from '../../store/slices/widgetSlices/weatherWidgetSlice';
 
 import sunnyIcon from '../../assets/images/sunny_icon.png';
 import cloudyIcon from '../../assets/images/cloudy_icon.png';
@@ -11,138 +23,95 @@ const weatherIcons = {
   rainy: rainyIcon,
 };
 
-const getWeatherIcon = (condition) => {
-  if (condition.includes('cloud')) {
-    return weatherIcons.cloudy;
-  } else if (condition.includes('rain')) {
-    return weatherIcons.rainy;
-  } else {
-    return weatherIcons.sunny;
-  }
-};
-
 function WeatherWidget({ className }) {
-  const [weather, setWeather] = useState({
-    temperature: '',
-    condition: '',
-    city: '',
-    country: '',
-  });
-
-  const [icon, setIcon] = useState(weatherIcons.sunny);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState('Seattle');
-  const [isVisible, setIsVisible] = useState(true);
-  const [temperatureUnit, setTemperatureUnit] = useState('imperial');
-  const apiKey = 'a0182485c7d1f3c74a26769f6304f312';
+  const dispatch = useDispatch();
+  const { 
+    currentWeather, 
+    searchTerm, 
+    suggestions, 
+    selectedLocation, 
+    isVisible,
+    isTransitioning,
+    temperatureUnit, 
+    status 
+  } = useSelector((state) => state.weather);
 
   useEffect(() => {
-    const fetchWeatherData = async () => {
-      try {
-        setIsVisible(false);
-
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${selectedLocation}&units=${temperatureUnit}&appid=${apiKey}`
-        );
-        const data = response.data;
-
-        const temperature = data.main.temp;
-        const condition = data.weather[0].description;
-        const city = data.name;
-        const country = data.sys.country;
-
-        setTimeout(() => {
-          setWeather({ temperature, condition, city, country });
-          setIcon(getWeatherIcon(condition));
-          setIsVisible(true);
-        }, 500);
-      } catch (error) {
-        console.error('Error fetching weather data.', error);
-      }
+    const fetchData = async () => {
+      dispatch(setIsTransitioning(true));
+      dispatch(setIsVisible(false));
+      
+      await dispatch(fetchWeatherData({ selectedLocation, temperatureUnit }));
+      
+      setTimeout(() => {
+        dispatch(applyNewWeather());
+        dispatch(setIsTransitioning(false));
+        dispatch(setIsVisible(true));
+      }, 500);
     };
 
-    fetchWeatherData();
-  }, [selectedLocation, temperatureUnit]);
-
-  const fetchCitySuggestions = async (query) => {
-    try {
-      if (query.length === 0) {
-        setSuggestions([]);
-        return;
-      }
-
-      const response = await axios.get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${apiKey}`
-      );
-      const cities = response.data;
-
-      const uniqueCities = cities.filter(
-        (city, index, self) =>
-          index === self.findIndex(
-            (t) => t.name === city.name && t.country === city.country
-          )
-      );
-
-      setSuggestions(uniqueCities);
-    } catch (error) {
-      console.error('Error fetching city suggestions.', error);
-    }
-  };
+    fetchData();
+  }, [selectedLocation, temperatureUnit, dispatch]);
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
-    setSearchTerm(query);
-
-    fetchCitySuggestions(query);
+    dispatch(setSearchTerm(query));
+    dispatch(fetchCitySuggestions(query));
   };
 
   const handleSuggestionClick = (location) => {
-    setSelectedLocation(location.name);
-    setSearchTerm('');
-    setSuggestions([]);
+    dispatch(setSelectedLocation(location.name));
+    dispatch(setSearchTerm(''));
+    dispatch(clearSuggestions());
   };
 
   const handleUnitChange = (e) => {
-    setTemperatureUnit(e.target.value);
+    dispatch(setTemperatureUnit(e.target.value));
   };
 
   return (
     <div className={`widget-card ${className}`}>
       <h2 className="widget-title">Current Weather</h2>
 
-      {/* Weather Icon */}
-      <div className="flex-justify-center mb-4 relative">
-        <img
-          src={icon}
-          alt={weather.condition}
-          className={`w-20 h-20 absolute right-1 top-2 transition-opacity duration-500 ${
-            isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      </div>
+      <div className="h-32 relative">
+        <div className="absolute right-0 top-0 w-24 h-24 flex items-center justify-center overflow-hidden">
+          <img
+            src={weatherIcons[currentWeather.icon]}
+            alt={currentWeather.condition}
+            className={`w-28 h-28 object-cover transition-opacity duration-500 ${
+              isVisible && !isTransitioning ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        </div>
 
-      {/* Weather Info with fade-in/out */}
-      <div
-        className={`text-gray-700 dark:text-gray-200 transition-opacity duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <p className="text-2xl font-bold dark:text-gray-300">
-          {weather.temperature}°{temperatureUnit === 'metric' ? 'C' : 'F'}
-        </p>
-        <p className="text-gray-500 dark:text-gray-300 capitalize">{weather.condition}</p>
-        <p className="text-gray-500 dark:text-gray-300">
-          {weather.city}, {weather.country}
-        </p>
+        {/* Weather Info */}
+        <div
+          className={`absolute left-0 top-0 right-24 transition-opacity duration-500 ${
+            isVisible && !isTransitioning ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {status === 'failed' ? (
+            <p>Error loading weather data</p>
+          ) : (
+            <>
+              <p className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+                {currentWeather.temperature}°{temperatureUnit === 'metric' ? 'C' : 'F'}
+              </p>
+              <p className="text-gray-500 dark:text-gray-300 capitalize">{currentWeather.condition}</p>
+              <p className="text-gray-500 dark:text-gray-300">
+                {currentWeather.city}, {currentWeather.country}
+              </p>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Celsius/Fahrenheit Dropdown */}
-      <div className="mt-4">
+      <div className="mb-4">
         <select
           value={temperatureUnit}
           onChange={handleUnitChange}
-          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-4 rounded w-37"
+          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-4 rounded w-full"
         >
           <option value="imperial">Fahrenheit (°F)</option>
           <option value="metric">Celsius (°C)</option>
@@ -150,7 +119,7 @@ function WeatherWidget({ className }) {
       </div>
 
       {/* Search bar */}
-      <div className="mt-6 relative">
+      <div className="relative">
         <input
           type="text"
           value={searchTerm}

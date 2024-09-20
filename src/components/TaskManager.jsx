@@ -1,21 +1,18 @@
-// src/components/TaskManager.jsx
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addTask, toggleTaskCompletion, setTaskInput } from '../store/slices/taskManagerSlice';
 
 function TaskManager() {
-  const [tasks, setTasks] = useState([]);
-  const [task, setTask] = useState('');
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.taskManager.list);
+  const taskInput = useSelector((state) => state.taskManager.taskInput);
 
-  const addTask = () => {
-    setTasks([...tasks, { id: tasks.length + 1, text: task, completed: false }]);
-    setTask('');
+  const handleAddTask = () => {
+    dispatch(addTask());
   };
 
-  const toggleTaskCompletion = (taskId) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === taskId ? { ...task, completed: !task.completed } : task
-      )
-    );
+  const handleTaskInputChange = (e) => {
+    dispatch(setTaskInput(e.target.value));
   };
 
   return (
@@ -23,16 +20,16 @@ function TaskManager() {
       <h2 className="text-3xl widget-title">Task Manager</h2>
       <input
         type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
+        value={taskInput}
+        onChange={handleTaskInputChange}
         placeholder="Add a new task"
       />
-      <button onClick={addTask}>Add Task</button>
+      <button onClick={handleAddTask}>Add Task</button>
       <ul>
         {tasks.map((task) => (
           <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
             {task.text}
-            <button onClick={() => toggleTaskCompletion(task.id)}>
+            <button onClick={() => dispatch(toggleTaskCompletion(task.id))}>
               {task.completed ? 'Undo' : 'Complete'}
             </button>
           </li>
