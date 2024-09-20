@@ -1,25 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    list:[],
+        taskInput: ''
+};
+
 const taskManagerSlice = createSlice({
     name: 'tasks',
-    initialState: {
-        list:[],
-        taskInput: ''
-    },
+    initialState,
     reducers: {
         addTask: (state) => {
-            state.list.push({ id: state.list.length + 1, text: state.taskInput, completed: false });
-            state.taskInput = '';
-        },
-        toggleTaskCompletion: (state, action) => {
-            const task = state.list.find(task => task.id === action.payload);
-            if (task) {
-                task.completed = !task.completed;
+            if (state.taskInput.trim()) {
+              state.list.push({
+                id: state.list.length + 1,
+                text: state.taskInput,
+                completed: false,
+              });
+              state.taskInput = '';
             }
-        },
-        setTaskInput: (state, action) => {
+          },
+          toggleTaskCompletion: (state, action) => {
+            const task = state.list.find((task) => task.id === action.payload);
+            if (task) {
+              task.completed = !task.completed;
+            }
+          },
+          setTaskInput: (state, action) => {
             state.taskInput = action.payload;
-        },
+          },
     },
 });
 
