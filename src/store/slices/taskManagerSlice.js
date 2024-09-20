@@ -1,39 +1,27 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentTask, addTask, toggleTaskCompletion } from '../store/slices/tasksSlice';
+import { createSlice } from '@reduxjs/toolkit';
 
-function TaskManager() {
-    const dispatch = useDispatch();
-    const { tasks, currentTask } = useSelector((state) => state.tasks);
+const taskManagerSlice = createSlice({
+    name: 'tasks',
+    initialState: {
+        list:[],
+        taskInput: ''
+    },
+    reducers: {
+        addTask: (state) => {
+            state.list.push({ id: state.list.length + 1, text: state.taskInput, completed: false });
+            state.taskInput = '';
+        },
+        toggleTaskCompletion: (state, action) => {
+            const task = state.list.find(task => task.id === action.payload);
+            if (task) {
+                task.completed = !task.completed;
+            }
+        },
+        setTaskInput: (state, action) => {
+            state.taskInput = action.payload;
+        },
+    },
+});
 
-    const handleAddTask = () => {
-        dispatch(addTask());
-    };
-
-    const handleTaskCompletion = () => {
-        dispatch(toggleTaskCompletion(taskId));
-    };
-
-    return (
-        <div style={{ padding: '20px' }}>
-            <h2 className="widget-title">Task Manager</h2>
-            <input
-                type="text"
-                value={currentTask}
-                onChange={(e) => dispatch(setCurrentTask(e.target.value))}
-                placeholder="Add new task"
-            />
-            <button onClick={handleAddTask}>Add Task</button>
-            <ul>
-                {tasks.map((task) => (
-                    <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none'}}>
-                        {task.text}
-                        <button onClick={() => handleTaskCompletion(task.id)}>
-                            {task.completed ? 'Undo' : 'Complete'}
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-}
+export const { addTask, toggleTaskCompletion, setTaskInput } = taskManagerSlice.actions;
+export default taskManagerSlice.reducer;
