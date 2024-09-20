@@ -1,7 +1,6 @@
 // src/store/index.js
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
-import tasksReducer from './slices/tasksSlice';
 import weatherReducer from './slices/widgetSlices/weatherWidgetSlice';
 import notificationsReducer from './slices/widgetSlices/notificationsWidgetSlice';
 import statisticsReducer from './slices/widgetSlices/statisticsWidgetSlice';
@@ -15,7 +14,6 @@ import taskSummaryReducer from './slices/widgetSlices/taskSummaryWidgetSlice';
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    tasks: tasksReducer,
     weather: weatherReducer,
     notifications: notificationsReducer,
     statistics: statisticsReducer,
