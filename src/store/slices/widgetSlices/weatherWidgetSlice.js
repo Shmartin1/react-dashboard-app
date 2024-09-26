@@ -3,8 +3,6 @@ import axios from 'axios';
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
-console.log('API Key:', API_KEY);
-
 export const fetchWeatherData = createAsyncThunk(
   'weather/fetchWeatherData',
   async ({ selectedLocation, temperatureUnit }) => {
