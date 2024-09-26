@@ -10,7 +10,8 @@ import progressReducer from './slices/widgetSlices/progressWidgetSlice';
 import chartReducer from './slices/widgetSlices/chartWidgetSlice';
 import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice';
 import taskSummaryReducer from './slices/widgetSlices/taskSummaryWidgetSlice';
-import taskManagerSlice from './slices/taskManagerSlice';
+import taskManagerReducer from './slices/taskManagerSlice';
+import settingsReducer from './slices/settingsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,10 @@ export const store = configureStore({
     chart: chartReducer,
     dateTime: dateTimeReducer,
     taskSummary: taskSummaryReducer,
-    taskManager: taskManagerSlice,
+    taskManager: taskManagerReducer,
+    settings: settingsReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
