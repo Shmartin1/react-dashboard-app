@@ -9,7 +9,7 @@ import WeatherWidget from './widgets/WeatherWidget';
 import RecentActivityWidget from './widgets/RecentActivityWidget';
 import NotificationWidget from './widgets/NotificationWidget';
 
-function Dashboard() {
+const Dashboard: React.FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {/* Statistics Widget */}
