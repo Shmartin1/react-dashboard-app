@@ -1,15 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface ProgressState {
+  progress: number;
+  isProgressing: boolean;
+}
+
+const initialState: ProgressState = {
   progress: 0,
   isProgressing: false,
 };
 
-export const progressSlice = createSlice({
+export const progressSlice = createSlice ({
   name: 'progress',
   initialState,
   reducers: {
-    setProgress: (state, action) => {
+    setProgress: (state, action: PayloadAction<number>) => {
       state.progress = action.payload;
     },
     startProgress: (state) => {
@@ -19,8 +24,8 @@ export const progressSlice = createSlice({
       state.isProgressing = false;
     },
     resetProgress: (state) => {
-      state.progress = 0;
       state.isProgressing = false;
+      state.progress = 0;
     },
     incrementProgress: (state) => {
       if (state.progress < 100) {
@@ -32,12 +37,12 @@ export const progressSlice = createSlice({
   },
 });
 
-export const { 
-  setProgress, 
-  startProgress, 
-  stopProgress, 
+export const {
+  setProgress,
+  startProgress,
+  stopProgress,
   resetProgress,
-  incrementProgress 
+  incrementProgress
 } = progressSlice.actions;
 
 export default progressSlice.reducer;

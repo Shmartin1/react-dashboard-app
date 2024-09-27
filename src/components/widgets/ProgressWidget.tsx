@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import Treact, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { 
-  startProgress, 
-  stopProgress, 
-  resetProgress, 
-  incrementProgress 
+import {
+  startProgress,
+  stopProgress,
+  resetProgress,
+  incrementProgress
 } from '../../store/slices/widgetSlices/progressWidgetSlice';
+import { RootState } from '../../store';
 
-function ProgressWidget({ className }) {
+interface ProgressWidgetProps {
+  className?: string;
+}
+
+const ProgressWidget: React.FC<ProgressWidgetProps> = ({ className }) => {
   const dispatch = useDispatch();
-  const { progress, isProgressing } = useSelector((state) => state.progress);
+  const { progress, isProgressing } = useSelector((state: RootState) => state.progress);
 
   useEffect(() => {
-    let intervalId;
+    let intervalId: NodeJS.Timeout;
     if (isProgressing) {
       intervalId = setInterval(() => {
         dispatch(incrementProgress());
