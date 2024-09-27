@@ -1,6 +1,6 @@
-// src/components/widgets/WeatherWidget.jsx
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
 import { 
   fetchWeatherData, 
   fetchCitySuggestions, 
@@ -23,8 +23,12 @@ const weatherIcons = {
   rainy: rainyIcon,
 };
 
-function WeatherWidget({ className }) {
-  const dispatch = useDispatch();
+interface WeatherWidgetProps {
+  className?: string;
+}
+
+const WeatherWidget: React.FC<WeatherWidgetProps> = ({ className }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { 
     currentWeather, 
     searchTerm, 
@@ -34,7 +38,7 @@ function WeatherWidget({ className }) {
     isTransitioning,
     temperatureUnit, 
     status 
-  } = useSelector((state) => state.weather);
+  } = useSelector((state: RootState) => state.weather);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,20 +57,20 @@ function WeatherWidget({ className }) {
     fetchData();
   }, [selectedLocation, temperatureUnit, dispatch]);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     dispatch(setSearchTerm(query));
     dispatch(fetchCitySuggestions(query));
   };
 
-  const handleSuggestionClick = (location) => {
+  const handleSuggestionClick = (location: { name: string; country: string }) => {
     dispatch(setSelectedLocation(location.name));
     dispatch(setSearchTerm(''));
     dispatch(clearSuggestions());
   };
 
-  const handleUnitChange = (e) => {
-    dispatch(setTemperatureUnit(e.target.value));
+  const handleUnitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setTemperatureUnit(e.target.value as 'imperial' | 'metric'));
   };
 
   return (
@@ -84,7 +88,6 @@ function WeatherWidget({ className }) {
           />
         </div>
 
-        {/* Weather Info */}
         <div
           className={`absolute left-0 top-0 right-24 transition-opacity duration-500 ${
             isVisible && !isTransitioning ? 'opacity-100' : 'opacity-0'
@@ -106,7 +109,6 @@ function WeatherWidget({ className }) {
         </div>
       </div>
 
-      {/* Celsius/Fahrenheit Dropdown */}
       <div className="mb-4">
         <select
           value={temperatureUnit}
@@ -118,7 +120,6 @@ function WeatherWidget({ className }) {
         </select>
       </div>
 
-      {/* Search bar */}
       <div className="relative">
         <input
           type="text"
@@ -128,7 +129,6 @@ function WeatherWidget({ className }) {
           placeholder="Search for a location..."
         />
 
-        {/* Suggestions list */}
         {suggestions.length > 0 && (
           <ul
             className="absolute left-0 right-0 border dark:border-gray-600 rounded bg-white dark:bg-gray-700 mt-1 max-h-32 overflow-y-auto z-10"
@@ -150,6 +150,6 @@ function WeatherWidget({ className }) {
       </div>
     </div>
   );
-}
+};
 
 export default WeatherWidget;
