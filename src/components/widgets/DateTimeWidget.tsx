@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateCurrentTime, setTimezone, toggleClockMode } from '../../store/slices/widgetSlices/dateTimeWidgetSlice';
+import { RootState, AppDispatch } from '../../store';
+import { setTimezone, toggleClockMode } from '../../store/slices/widgetSlices/dateTimeWidgetSlice';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 
+interface DateTimeWidgetProps {
+  className?: string;
+}
+
 const timezones = Intl.supportedValuesOf('timeZone');
 
-function DateTimeWidget({ className }) {
-  const dispatch = useDispatch();
-  const { currentTime, timezone, isAnalog } = useSelector((state) => state.dateTime);
+const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { timezone, isAnalog } = useSelector((state: RootState) => state.dateTime);
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [isTransitioningOut, setIsTransitioningOut] = useState(false);
   const [isTransitioningIn, setIsTransitioningIn] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => dispatch(updateCurrentTime()), 1000);
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
-  }, [dispatch]);
+  }, []);
 
-  const handleTimezoneChange = (e) => {
+  const handleTimezoneChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setTimezone(e.target.value));
   };
 
@@ -31,7 +37,7 @@ function DateTimeWidget({ className }) {
     }, 300);
   };
 
-  const formatTime = (date, timeZone) =>
+  const formatTime = (date: Date, timeZone: string): string =>
     new Intl.DateTimeFormat('en-US', {
       timeZone: timeZone,
       hour: 'numeric',
@@ -39,8 +45,8 @@ function DateTimeWidget({ className }) {
       second: 'numeric',
     }).format(date);
 
-  const formatDate = (date, timeZone) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone };
+  const formatDate = (date: Date, timeZone: string): React.ReactNode[] => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric', timeZone };
     return new Intl.DateTimeFormat('en-US', options)
       .formatToParts(date)
       .map((part, index) =>
@@ -54,7 +60,14 @@ function DateTimeWidget({ className }) {
       );
   };
 
-  const timeInSelectedTimezone = new Date(currentTime);
+  const getTimeInTimezone = (date: Date, timeZone: string): Date => {
+    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
+    const offset = tzDate.getTime() - utcDate.getTime();
+    return new Date(date.getTime() + offset);
+  };
+
+  const timeInSelectedTimezone = getTimeInTimezone(currentTime, timezone);
 
   return (
     <div className={`widget-card ${className}`}>
@@ -69,7 +82,7 @@ function DateTimeWidget({ className }) {
         >
           {isAnalog ? (
             <div className="flex justify-center items-center h-full">
-              <Clock value={timeInSelectedTimezone} size={150} />
+              <Clock value={timeInSelectedTimezone} />
             </div>
           ) : (
             <div className="mt-4">
