@@ -1,8 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 
-function StatisticsWidget({ className }) {
-  const stats = useSelector((state) => state.statistics.stats);
+interface StatisticsWidgetProps {
+  className?: string;
+}
+
+const StatisticsWidget: React.FC<StatisticsWidgetProps> = ({ className }) => {
+  const stats = useSelector((state: RootState) => state.statistics.stats);
 
   return (
     <div className={`widget-card space-y-8 ${className}`}>
@@ -18,6 +23,6 @@ function StatisticsWidget({ className }) {
       </div>
     </div>
   );
-}
+};
 
 export default StatisticsWidget;

@@ -1,6 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface Statistic {
+  id: number;
+  value: string;
+  label: string;
+}
+
+interface StatisticsState {
+  stats: Statistic[];
+}
+
+const initialState: StatisticsState = {
   stats: [
     { id: 1, value: '1,245', label: 'Users' },
     { id: 2, value: '563', label: 'Tasks' },
@@ -15,7 +25,7 @@ export const statisticsSlice = createSlice({
   name: 'statistics',
   initialState,
   reducers: {
-    updateStatistic: (state, action) => {
+    updateStatistic: (state, action: PayloadAction<{ id: number; value: string }>) => {
       const { id, value } = action.payload;
       const statToUpdate = state.stats.find(stat => stat.id === id);
       if (statToUpdate) {
