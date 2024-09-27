@@ -65,7 +65,7 @@
   }
 
   .message-text {
-    @apply text-gray-700 dark:text-gray-300 select-none;
+    @apply text-gray-800 dark:text-gray-300 select-none;
   }
 
   .trash-icon-hover {
