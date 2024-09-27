@@ -1,17 +1,27 @@
+import React from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-function LineChart() {
+interface ChartData {
+  month: string;
+  tasks: number;
+}
+
+interface LineChartProps {
+  data: ChartData[];
+}
+
+const LineChart: React.FC<LineChartProps> = ({ data }) => {
   const isDarkMode = document.body.classList.contains('dark');
 
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May'],
+  const chartData = {
+    labels: data.map(item => item.month),
     datasets: [
       {
         label: 'Tasks Completed',
-        data: [10, 20, 30, 40, 50],
+        data: data.map(item => item.tasks),
         borderColor: 'rgba(75,192,192,1)',
         borderWidth: 2,
         fill: false,
@@ -51,7 +61,7 @@ function LineChart() {
   return (
     <div style={{ padding: '20px' }}>
       <h2 className="widget-title">Task Completion Trends</h2>
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
     </div>
   );
 }

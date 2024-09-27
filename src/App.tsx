@@ -26,7 +26,7 @@ const App: React.FC = () => {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/profile" element={<UserProfile />} />
                   <Route path="/tasks" element={<TaskManager />} />
-                  <Route path="/charts" element={<LineChart />} />
+                  {/* <Route path="/charts" element={<LineChart data={data} />} /> */}
                   <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
                 </Routes>

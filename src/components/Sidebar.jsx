@@ -14,7 +14,7 @@ function Sidebar() {
         {[
           { to: '/', label: 'Dashboard' },
           { to: '/tasks', label: 'Tasks' },
-          { to: '/charts', label: 'Charts' },
+          // { to: '/charts', label: 'Charts' },
           { to: '/activities', label: 'Activities' },
         ].map((item, index) => (
           <li key={index}>
