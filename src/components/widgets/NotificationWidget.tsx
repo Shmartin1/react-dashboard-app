@@ -4,11 +4,24 @@ import {
   moveNotificationToBottom,
   clearNewStatus
 } from '../../store/slices/widgetSlices/notificationsWidgetSlice';
+import { RootState } from '../../store'; // You'll need to create this type
 
-function NotificationWidget({ className }) {
+interface SwipeState {
+  [key: number]: {
+    startX: number;
+    currentX: number;
+    swiping: boolean;
+  };
+}
+
+interface NotificationWidgetProps {
+  className?: string;
+}
+
+function NotificationWidget({ className }: NotificationWidgetProps) {
     const dispatch = useDispatch();
-    const notifications = useSelector((state) => state.notifications.notifications);
-    const [swipeState, setSwipeState] = useState({});
+    const notifications = useSelector((state: RootState) => state.notifications.notifications);
+    const [swipeState, setSwipeState] = useState<SwipeState>({});
 
     useEffect(() => {
         notifications.forEach(notification => {
@@ -20,23 +33,23 @@ function NotificationWidget({ className }) {
         });
     }, [notifications, dispatch]);
 
-    const handleSwipeStart = (e, id) => {
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        setSwipeState({ ...swipeState, [id]: { startX: clientX, currentX: 0, swiping: true } });
+    const handleSwipeStart = (e: React.MouseEvent | React.TouchEvent, id: number) => {
+        const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+        setSwipeState(prev => ({ ...prev, [id]: { startX: clientX, currentX: 0, swiping: true } }));
     };
 
-    const handleSwipeMove = (e, id) => {
+    const handleSwipeMove = (e: React.MouseEvent | React.TouchEvent, id: number) => {
         if (!swipeState[id] || !swipeState[id].swiping) return;
 
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
         const deltaX = clientX - swipeState[id].startX;
 
         if (deltaX < 0) return;
 
-        setSwipeState({ ...swipeState, [id]: { ...swipeState[id], currentX: deltaX } });
+        setSwipeState(prev => ({ ...prev, [id]: { ...prev[id], currentX: deltaX } }));
     };
 
-    const handleSwipeEnd = useCallback((id) => {
+    const handleSwipeEnd = useCallback((id: number) => {
         const threshold = 100;
         const deltaX = swipeState[id]?.currentX || 0;
 
@@ -44,15 +57,15 @@ function NotificationWidget({ className }) {
             dispatch(moveNotificationToBottom(id));
         }
 
-        setSwipeState(prevState => ({
-            ...prevState,
-            [id]: { currentX: 0, swiping: false }
+        setSwipeState(prev => ({
+            ...prev,
+            [id]: { ...prev[id], currentX: 0, swiping: false }
         }));
     }, [dispatch, swipeState]);
 
     const handleMouseLeave = useCallback(() => {
         Object.keys(swipeState).forEach(id => {
-            if (swipeState[id].swiping) {
+            if (swipeState[Number(id)].swiping) {
                 handleSwipeEnd(Number(id));
             }
         });
@@ -61,7 +74,7 @@ function NotificationWidget({ className }) {
     useEffect(() => {
         const handleGlobalMouseUp = () => {
             Object.keys(swipeState).forEach(id => {
-                if (swipeState[id].swiping) {
+                if (swipeState[Number(id)].swiping) {
                     handleSwipeEnd(Number(id));
                 }
             });
