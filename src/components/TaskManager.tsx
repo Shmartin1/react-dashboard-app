@@ -1,17 +1,18 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../store';
 import { addTask, toggleTaskCompletion, setTaskInput } from '../store/slices/taskManagerSlice';
 
-function TaskManager() {
-  const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.taskManager.list);
-  const taskInput = useSelector((state) => state.taskManager.taskInput);
+const TaskManager: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const tasks = useSelector((state: RootState) => state.taskManager.list);
+  const taskInput = useSelector((state: RootState) => state.taskManager.taskInput);
 
   const handleAddTask = () => {
     dispatch(addTask());
   };
 
-  const handleTaskInputChange = (e) => {
+  const handleTaskInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setTaskInput(e.target.value));
   };
 
@@ -37,6 +38,6 @@ function TaskManager() {
       </ul>
     </div>
   );
-}
+};
 
 export default TaskManager;
