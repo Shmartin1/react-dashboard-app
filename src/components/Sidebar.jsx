@@ -15,7 +15,7 @@ function Sidebar() {
           { to: '/', label: 'Dashboard' },
           { to: '/tasks', label: 'Tasks' },
           // { to: '/charts', label: 'Charts' },
-          { to: '/activities', label: 'Activities' },
+          { to: '/activities', label: 'Activity Feed' },
         ].map((item, index) => (
           <li key={index}>
             <NavLink

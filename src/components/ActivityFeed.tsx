@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchActivities } from '../store/slices/recentActivitySlice';
-import { RootState, AppDispatch } from '../store'; // Make sure to create these types in your store file
+import { RootState, AppDispatch } from '../store';
 
 interface ActivityFeedProps {
   className?: string;

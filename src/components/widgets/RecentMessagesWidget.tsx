@@ -8,13 +8,18 @@ import {
   clearReenteringMessageId,
   reenterMessage
 } from '../../store/slices/widgetSlices/recentMessagesWidgetSlice';
+import { RootState, AppDispatch } from '../../store';
 import { TrashIcon } from '@heroicons/react/solid';
 
-function RecentMessageWidget({ className }) {
-  const dispatch = useDispatch();
-  const { messages, removingMessageIds, reenteringMessageIds } = useSelector((state) => state.recentMessages);
+interface RecentMessageWidgetProps {
+  className?: string;
+}
 
-  const removeAndReenterMessage = useCallback((id) => {
+function RecentMessageWidget({ className }: RecentMessageWidgetProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { messages, removingMessageIds, reenteringMessageIds } = useSelector((state: RootState) => state.recentMessages);
+
+  const removeAndReenterMessage = useCallback((id: number) => {
     dispatch(setRemovingMessageId(id));
     
     setTimeout(() => {

@@ -1,7 +1,18 @@
-// src/store/slices/recentMessages/recentMessagesSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+interface Message {
+  id: number;
+  text: string;
+  timestamp: string;
+}
+
+interface RecentMessagesState {
+  messages: Message[];
+  removingMessageIds: number[];
+  reenteringMessageIds: number[];
+}
+
+const initialState: RecentMessagesState = {
   messages: [
     { id: 1, text: "New update available for the dashboard.", timestamp: "2 hours ago" },
     { id: 2, text: "Meeting scheduled at 3 PM today.", timestamp: "5 hours ago" },
@@ -15,28 +26,28 @@ export const recentMessagesSlice = createSlice({
   name: 'recentMessages',
   initialState,
   reducers: {
-    addMessage: (state, action) => {
+    addMessage: (state, action: PayloadAction<Omit<Message, 'id'>>) => {
       state.messages.unshift({ id: Date.now(), ...action.payload });
       if (state.messages.length > 5) {
         state.messages.pop();
       }
     },
-    removeMessage: (state, action) => {
+    removeMessage: (state, action: PayloadAction<number>) => {
       state.messages = state.messages.filter(message => message.id !== action.payload);
     },
-    setRemovingMessageId: (state, action) => {
+    setRemovingMessageId: (state, action: PayloadAction<number>) => {
       state.removingMessageIds.push(action.payload);
     },
-    clearRemovingMessageId: (state, action) => {
+    clearRemovingMessageId: (state, action: PayloadAction<number>) => {
       state.removingMessageIds = state.removingMessageIds.filter(id => id !== action.payload);
     },
-    setReenteringMessageId: (state, action) => {
+    setReenteringMessageId: (state, action: PayloadAction<number>) => {
       state.reenteringMessageIds.push(action.payload);
     },
-    clearReenteringMessageId: (state, action) => {
+    clearReenteringMessageId: (state, action: PayloadAction<number>) => {
       state.reenteringMessageIds = state.reenteringMessageIds.filter(id => id !== action.payload);
     },
-    reenterMessage: (state, action) => {
+    reenterMessage: (state, action: PayloadAction<number>) => {
       const messageToReenter = initialState.messages.find(msg => msg.id === action.payload);
       if (messageToReenter) {
         state.messages.push(messageToReenter);
