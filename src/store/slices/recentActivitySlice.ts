@@ -1,7 +1,19 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+
+interface Activity {
+  id: number;
+  text: string;
+  timestamp: string;
+}
+
+interface RecentActivityState {
+  activities: Activity[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}
 
 // Simulating an API call
-const fetchActivitiesAPI = () => {
+const fetchActivitiesAPI = (): Promise<Activity[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve([
@@ -21,7 +33,7 @@ export const fetchActivities = createAsyncThunk(
   }
 );
 
-const initialState = {
+const initialState: RecentActivityState = {
   activities: [],
   status: 'idle',
   error: null,
@@ -31,13 +43,13 @@ export const recentActivitySlice = createSlice({
   name: 'recentActivity',
   initialState,
   reducers: {
-    addActivity: (state, action) => {
+    addActivity: (state, action: PayloadAction<Omit<Activity, 'id'>>) => {
       state.activities.unshift({ id: Date.now(), ...action.payload });
       if (state.activities.length > 5) {
         state.activities.pop();
       }
     },
-    removeActivity: (state, action) => {
+    removeActivity: (state, action: PayloadAction<number>) => {
       state.activities = state.activities.filter(activity => activity.id !== action.payload);
     },
     clearActivities: (state) => {
@@ -49,13 +61,13 @@ export const recentActivitySlice = createSlice({
       .addCase(fetchActivities.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchActivities.fulfilled, (state, action) => {
+      .addCase(fetchActivities.fulfilled, (state, action: PayloadAction<Activity[]>) => {
         state.status = 'succeeded';
         state.activities = action.payload;
       })
       .addCase(fetchActivities.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = action.error.message || 'An error occurred';
       });
   },
 });

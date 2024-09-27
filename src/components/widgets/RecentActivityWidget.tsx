@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchActivities } from '../../store/slices/recentActivitySlice';
+import { RootState, AppDispatch } from '../../store';
 
-function RecentActivityWidget({ className }) {
-    const dispatch = useDispatch();
-    const { activities, status, error } = useSelector((state) => state.recentActivity);
+interface RecentActivityWidgetProps {
+    className?: string;
+}
+
+function RecentActivityWidget({ className }: RecentActivityWidgetProps) {
+    const dispatch = useDispatch<AppDispatch>();
+    const { activities, status, error } = useSelector((state: RootState) => state.recentActivity);
 
     useEffect(() => {
         if (status === 'idle') {
