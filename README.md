@@ -1,6 +1,15 @@
 # React Dashboard App
-A dynamic and fully responsive React Dashboard Application built using modern React features like Hooks, Context API, and React Router. This application is designed with a clean and professional interface using Tailwind CSS, providing an easy-to-navigate and customizable user experience. It includes user authentication, task management, data visualization, and a responsive layout.
+A dynamic and responsive Dashboard Application showcasing expertise in React development, built using modern React features and state management tools. This application leverages Tailwind CSS, providing an easy-to-navigate and customizable user experience. It includes user authentication, task management, data visualization, and a responsive layout.
 
+### Technologies Used:
+- React: Core framework for building the UI.
+- Redux Toolkit: For state management.
+- TypeScript: For adding static typing and improvements over generic JavaScript.
+- React Hooks: For state and effect management (e.g., useState, useContext).
+- Context API: For global state management (user session).
+- React Router: For navigating between different views (Dashboard, Profile, Tasks).
+- Chart.js & React-Chartjs-2: For dynamic data visualization.
+Tailwind CSS: Utility-first CSS framework for modern and responsive design.
 
 ## Features:
 - User Authentication: Simple login and logout functionality with validation for credentials.
@@ -10,13 +19,7 @@ A dynamic and fully responsive React Dashboard Application built using modern Re
 - Responsive Design: Fully responsive layout built with Tailwind CSS, ensuring usability across devices from desktops to mobile phones.
 - Theming: Easily customizable with clean and modular components.
 
-### Technologies Used:
-- React: Core framework for building the UI.
-- React Hooks: For state and effect management (e.g., useState, useContext).
-- Context API: For global state management (user session).
-- React Router: For navigating between different views (Dashboard, Profile, Tasks).
-- Chart.js & React-Chartjs-2: For dynamic data visualization.
-Tailwind CSS: Utility-first CSS framework for modern and responsive design.
+
 
 ## Environment Setup
 
