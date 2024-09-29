@@ -11,6 +11,7 @@ import dateTimeReducer from './slices/widgetSlices/dateTimeWidgetSlice';
 import taskSummaryReducer from './slices/widgetSlices/taskSummaryWidgetSlice';
 import taskManagerReducer from './slices/taskManagerSlice';
 import settingsReducer from './slices/settingsSlice';
+import profileReducer from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     taskSummary: taskSummaryReducer,
     taskManager: taskManagerReducer,
     settings: settingsReducer,
+    profile: profileReducer,
   },
 });
 

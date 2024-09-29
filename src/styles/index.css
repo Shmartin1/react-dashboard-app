@@ -81,7 +81,7 @@
   }
 
   .header-link {
-    @apply text-gray-200 hover:text-white transition-colors
+    @apply text-gray-100 hover:text-white transition-colors px-3
   }
 }
 
