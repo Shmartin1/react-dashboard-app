@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         </div>
         {/* Right side */}
         <div className="w-1/2 p-10 mr-10">
-            <p className="text-sm mb-8 text-gray-600 dark:text-gray-300">
+            <p className="text-sm mb-8 text-gray-900 dark:text-gray-300">
                 Josh Martin is an innovative software engineer with 5 years of industry 
                 experience and demonstrated success in contributing to high-impact open-source
                 projects such as OpenMRS, a free medical record system. He acted as the lead 
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
                 monitoring and data capture. He exemplifies expertise in full-stack, web, 
                 backend development, database architecture, and DevOps.
             </p>
-            <p className="text-sm mb-8 text-gray-600 dark:text-gray-300">
+            <p className="text-sm mb-8 text-gray-900 dark:text-gray-300">
                 This website serves as a showcase of my technical skill and experience as a software engineer. 
                 Here, you'll find an interactive dashboard demonstrating my proficiency with React, Redux Toolkit, 
                 TypeScript, Tailwind, and more. Beyond the technical demonstration, this site houses my professional background, 
