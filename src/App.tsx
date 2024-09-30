@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
+import Footer from './components/Footer';
+import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import UserProfile from './components/UserProfile';
 import TaskManager from './components/TaskManager';
-import LineChart from './components/LineChart';
 import ActivityFeed from './components/ActivityFeed';
 import Settings from './components/Settings'
 import { UserProvider } from './context/UserContext';
@@ -19,14 +19,13 @@ const App: React.FC = () => {
         <Router>
           <Header />
           <div style={{ display: 'flex' }}>
-            <Sidebar />
             <div style={{ flex: 1 }}>
-              <main>
+              <main className="flex-grow overflow-auto" style={{ maxHeight: 'calc(100vh - 64px - 64px)' }}>
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/profile" element={<UserProfile />} />
                   <Route path="/tasks" element={<TaskManager />} />
-                  {/* <Route path="/charts" element={<LineChart data={data} />} /> */}
                   <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
                 </Routes>
@@ -34,6 +33,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </Router>
+        <Footer />
       </UserProvider>
     </Provider>
   );
