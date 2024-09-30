@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import UserProfile from './components/UserProfile';
@@ -19,7 +20,7 @@ const App: React.FC = () => {
           <Header />
           <div style={{ display: 'flex' }}>
             <div style={{ flex: 1 }}>
-              <main>
+              <main className="flex-grow overflow-auto" style={{ maxHeight: 'calc(100vh - 64px - 64px)' }}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/dashboard" element={<Dashboard />} />
@@ -32,6 +33,7 @@ const App: React.FC = () => {
             </div>
           </div>
         </Router>
+        <Footer />
       </UserProvider>
     </Provider>
   );
