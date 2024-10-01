@@ -9,30 +9,26 @@ const Home: React.FC = () => {
 
     return (
         <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 pt-8 justify-center">
-            <div className="flex w-full max-w-7xl lg:mx-20 xl:mx-40">
+            <div className="flex flex-col md:flex-row w-full max-w-7xl lg:mx-20 xl:mx-40">
                 {/* Left side */}
-                <div className="w-1/2 p-8 flex flex-col ml-5 lg:ml-10">
-                    <div className="flex flex-row pl-5 mt-2">
-                        <h1 className="text-4xl font-bold mb-1 text-gray-800 dark:text-white pr-2">{name}</h1>
-                        <div>
-                            <img src={favicon} alt="Favicon" className="w-10 h-10" />
-                        </div>
+                <div className="w-full md:w-1/2 p-8 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div className="flex items-center space-x-2 md:justify-start justify-center">
+                        <h1 className="text-4xl font-bold mb-1 text-gray-800 dark:text-white">{name}</h1>
+                        <img src={favicon} alt="Favicon" className="w-10 h-10" />
                     </div>
-                    <h3 className="text-xl mb-4 text-gray-800 dark:text-white pl-5">{title}</h3>
-                    <div className="ml-16 mt-5">
-                        <div className="mb-8 overflow-hidden rounded-full w-48 h-48 border-4 border-blue-500">
-                            <div className="w-full h-[120%] -translate-y-1">
-                                <img 
-                                    src={headshotUrl} 
-                                    alt={name} 
-                                    className="w-full h-full object-cover object-top"
-                                />
-                            </div>
+                    <h3 className="text-xl mb-4 text-gray-800 dark:text-white">{title}</h3>
+                    <div className="mt-5">
+                        <div className="mb-8 overflow-hidden rounded-full w-48 h-48 border-4 border-blue-500 mx-auto md:mx-0">
+                            <img 
+                                src={headshotUrl} 
+                                alt={name} 
+                                className="w-full h-full object-cover object-top"
+                            />
                         </div>
                     </div>
                 </div>
                 {/* Right side */}
-                <div className="w-1/2 p-8 lg:p-10 text-sm">
+                <div className="w-full md:w-1/2 p-8 lg:p-10 text-sm">
                     <p className="mb-8 text-gray-900 dark:text-gray-300">
                         Josh Martin is an innovative software engineer with 5 years of industry 
                         experience and demonstrated success in contributing to high-impact open-source
@@ -47,7 +43,7 @@ const Home: React.FC = () => {
                         Here, you'll find an interactive{' '} 
                         <Link
                             to='/dashboard'
-                            className="text-blue-500 font-bold hover:underline hover:shadow-lg transition-shadow duration-300;"
+                            className="text-blue-500 font-bold hover:underline hover:shadow-lg transition-shadow duration-300"
                         >
                             dashboard
                         </Link>{' '}
@@ -73,7 +69,7 @@ const Home: React.FC = () => {
                                 <span className="pill-label">Kotlin</span>
                                 <span className="pill-label">TypeScript</span>
                                 <span className="pill-label">React</span>
-                                <span className="pill-label">graphQL</span>
+                                <span className="pill-label">GraphQL</span>
                             </div>
                         </div>
 
@@ -97,7 +93,7 @@ const Home: React.FC = () => {
                         <div className="resume-card">
                             <div className="flex justify-between items-center">
                                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">SDE (Full Stack, Embedded) · Madonna Rehabilitation Hospital</h2>
-                                <span className="text-sm text-gray-600 dark:text-gray-400  ml-2">2018 — 2020</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">2018 — 2020</span>
                             </div>
                             <p className="mt-3 text-xs text-gray-700 dark:text-gray-300">
                                 Conceptualized and developed the Simple Measurement of Activity in Real Time (SMART) system, showcasing expertise in system design and implementation.
@@ -115,10 +111,10 @@ const Home: React.FC = () => {
                         <div className="resume-card">
                             <div className="flex justify-between items-center">
                                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">SDE (Backend) · Sandhills Global</h2>
-                                <span className="text-sm text-gray-600 dark:text-gray-400  ml-2">2017 — 2018</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">2017 — 2018</span>
                             </div>
                             <p className="mt-3 text-xs text-gray-700 dark:text-gray-300">
-                                Developed  web applications for trading and auctions, implementing meticulous design strategies to elevate user experiences and optimize system efficiency.
+                                Developed web applications for trading and auctions, implementing meticulous design strategies to elevate user experiences and optimize system efficiency.
                                 Led the design and optimization of APIs, implementing modifications to enhance functionality, performance, and maintainability.
                             </p>
                             <div className="mt-4 flex flex-wrap gap-2">
@@ -133,7 +129,6 @@ const Home: React.FC = () => {
             </div>
         </div>
     );
-    
 }
 
 export default Home;
