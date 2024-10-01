@@ -4,7 +4,7 @@ import {
   moveNotificationToBottom,
   clearNewStatus
 } from '../../store/slices/widgetSlices/notificationsWidgetSlice';
-import { RootState } from '../../store'; // You'll need to create this type
+import { RootState } from '../../store';
 
 interface SwipeState {
   [key: number]: {
