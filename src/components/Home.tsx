@@ -43,13 +43,20 @@ const Home: React.FC = () => {
                         Here, you'll find an interactive{' '} 
                         <Link
                             to='/dashboard'
-                            className="text-blue-500 font-bold hover:underline hover:shadow-lg transition-shadow duration-300"
+                            className="nav-link"
                         >
                             dashboard
                         </Link>{' '}
                         demonstrating my proficiency with React, Redux Toolkit, 
                         TypeScript, Tailwind, and more. Beyond the technical demonstration, this site houses my professional background, 
-                        including my resume and a collection of projects that highlight my problem-solving abilities and 
+                        including my resume and a collection of projects and{' '}
+                        <Link
+                            to='/research'
+                            className="nav-link"
+                        >
+                            research
+                        </Link>{' '}
+                        that highlight my problem-solving abilities and 
                         coding expertise.
                     </p>
 
@@ -60,7 +67,7 @@ const Home: React.FC = () => {
                                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">SDE (Full Stack) · Expedia Group</h2>
                                 <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">2022 — Present</span>
                             </div>
-                            <p className="mt-3 text-xs text-gray-700 dark:text-gray-300">
+                            <p className="mt-3 text-xs text-gray-900 dark:text-gray-300">
                                 Led the architecture and implementation of a dynamic messaging rules engine, enhancing the capability to deliver customized messaging.
                                 Oversaw the maintenance of diverse backend services and progressive web applications, ensuring their reliability, performance, and alignment with project goals.
                             </p>
@@ -78,7 +85,7 @@ const Home: React.FC = () => {
                                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">SDE (Full Stack) · Infovisa Inc.</h2>
                                 <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">2020 — 2022</span>
                             </div>
-                            <p className="mt-3 text-xs text-gray-700 dark:text-gray-300">
+                            <p className="mt-3 text-xs text-gray-900 dark:text-gray-300">
                                 Oversaw the maintenance and development of applications and APIs across a portfolio of more than twenty integrated financial technology products.
                                 Functioned as the lead software engineer responsible for tax accounting and trust investment management applications, demonstrating proficiency in complex financial systems.
                             </p>
@@ -95,7 +102,7 @@ const Home: React.FC = () => {
                                 <h2 className="text-xl font-semibold text-gray-800 dark:text-white">SDE (Full Stack, Embedded) · Madonna Rehabilitation Hospital</h2>
                                 <span className="text-sm text-gray-600 dark:text-gray-400 ml-2">2018 — 2020</span>
                             </div>
-                            <p className="mt-3 text-xs text-gray-700 dark:text-gray-300">
+                            <p className="mt-3 text-xs text-gray-900 dark:text-gray-300">
                                 Conceptualized and developed the Simple Measurement of Activity in Real Time (SMART) system, showcasing expertise in system design and implementation.
                                 Led as the integration engineer facilitating collaboration between software and hardware teams, ensuring seamless synergy in project development.
                             </p>

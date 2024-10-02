@@ -1,0 +1,7 @@
+.nav-link {
+    @apply text-blue-500 font-bold hover:underline hover:shadow-lg transition-shadow duration-300;
+}
+
+.research-text {
+    @apply message-text indent-6 text-sm mb-4;
+}

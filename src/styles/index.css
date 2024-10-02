@@ -65,7 +65,7 @@
   }
 
   .message-text {
-    @apply text-gray-800 dark:text-gray-300 select-none;
+    @apply text-gray-900 dark:text-gray-300 select-none;
   }
 
   .trash-icon-hover {
@@ -89,7 +89,7 @@
   }
 
   .resume-card {
-    @apply bg-gray-200 dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
   }
 }
 
