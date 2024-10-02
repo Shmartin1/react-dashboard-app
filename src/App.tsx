@@ -7,7 +7,8 @@ import Dashboard from './components/Dashboard';
 import UserProfile from './components/UserProfile';
 import TaskManager from './components/TaskManager';
 import ActivityFeed from './components/ActivityFeed';
-import Settings from './components/Settings'
+import Settings from './components/Settings';
+import Research from './components/Research';
 import { UserProvider } from './context/UserContext';
 import { Provider } from 'react-redux';
 import { store } from './store';
@@ -28,6 +29,7 @@ const App: React.FC = () => {
                   <Route path="/tasks" element={<TaskManager />} />
                   <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
+                  <Route path="/research" element={<Research />} />
                 </Routes>
               </main>
             </div>
