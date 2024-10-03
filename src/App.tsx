@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
+import Resume from './components/Resume';
 import Dashboard from './components/Dashboard';
 import UserProfile from './components/UserProfile';
 import TaskManager from './components/TaskManager';
@@ -30,6 +31,7 @@ const App: React.FC = () => {
                   <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/research" element={<Research />} />
+                  <Route path="/resume" element={<Resume />} />
                 </Routes>
               </main>
             </div>

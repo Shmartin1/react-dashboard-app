@@ -18,7 +18,7 @@ const Home: React.FC = () => {
                     </div>
                     <h3 className="text-xl mb-4 text-gray-800 dark:text-white">{title}</h3>
                     <div className="mt-5">
-                        <div className="mb-8 overflow-hidden rounded-full w-48 h-48 border-4 border-blue-500 mx-auto md:mx-0">
+                        <div className="overflow-hidden rounded-full w-48 h-48 border-4 border-blue-500 mx-auto md:mx-0">
                             <img 
                                 src={headshotUrl} 
                                 alt={name} 
@@ -30,13 +30,9 @@ const Home: React.FC = () => {
                 {/* Right side */}
                 <div className="w-full md:w-1/2 p-8 lg:p-10 text-sm">
                     <p className="mb-8 text-gray-900 dark:text-gray-300">
-                        Josh Martin is an innovative software engineer with 5 years of industry 
-                        experience and demonstrated success in contributing to high-impact open-source
-                        projects such as OpenMRS, a free medical record system. He acted as the lead 
-                        software engineer and co-creator of the Simple Measurement of Activity in 
-                        Real Time (SMART) system, an embedded system for real-time health metric 
-                        monitoring and data capture. He exemplifies expertise in full-stack, web, 
-                        backend development, database architecture, and DevOps.
+                        I am a software engineer with 5 years of industry experience, as well as demonstrated success contributing to high-impact open-source projects. 
+                        As the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system, I developed an embedded system for real-time health metric monitoring and data capture. 
+                        My expertise spans full-stack, web, and backend development, database architecture, and DevOps.
                     </p>
                     <p className="mb-8 text-gray-900 dark:text-gray-300">
                         This website serves as a showcase of my technical skill and experience as a software engineer. 
@@ -49,7 +45,14 @@ const Home: React.FC = () => {
                         </Link>{' '}
                         demonstrating my proficiency with React, Redux Toolkit, 
                         TypeScript, Tailwind, and more. Beyond the technical demonstration, this site houses my professional background, 
-                        including my resume and a collection of projects and{' '}
+                        including my{' '}
+                        <Link
+                            to='/resume'
+                            className="nav-link"
+                        >
+                            resume
+                        </Link>{' '}
+                        and a collection of projects and{' '}
                         <Link
                             to='/research'
                             className="nav-link"
