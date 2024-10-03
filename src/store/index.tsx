@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './slices/userSlice';
 import weatherReducer from './slices/widgetSlices/weatherWidgetSlice';
 import notificationsReducer from './slices/widgetSlices/notificationsWidgetSlice';
 import statisticsReducer from './slices/widgetSlices/statisticsWidgetSlice';
@@ -15,7 +14,6 @@ import profileReducer from './slices/profileSlice';
 
 export const store = configureStore({
   reducer: {
-    user: userReducer,
     weather: weatherReducer,
     notifications: notificationsReducer,
     statistics: statisticsReducer,
