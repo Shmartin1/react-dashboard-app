@@ -5,9 +5,6 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import Resume from './components/Resume';
 import Dashboard from './components/Dashboard';
-import UserProfile from './components/UserProfile';
-import TaskManager from './components/TaskManager';
-import ActivityFeed from './components/ActivityFeed';
 import Settings from './components/Settings';
 import Research from './components/Research';
 import { UserProvider } from './context/UserContext';
@@ -26,9 +23,6 @@ const App: React.FC = () => {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/profile" element={<UserProfile />} />
-                  <Route path="/tasks" element={<TaskManager />} />
-                  <Route path="/activities" element={<ActivityFeed />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/research" element={<Research />} />
                   <Route path="/resume" element={<Resume />} />
