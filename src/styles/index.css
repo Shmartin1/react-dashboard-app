@@ -52,10 +52,6 @@
     @apply flex justify-between items-center
   }
 
-  .header-link {
-    @apply text-gray-100 hover:text-white transition-colors px-3
-  }
-
   .pill-label {
     @apply bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-xs
   }

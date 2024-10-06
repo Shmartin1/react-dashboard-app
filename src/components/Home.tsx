@@ -17,7 +17,7 @@ const Home: React.FC = () => {
                         <img src={favicon} alt="Favicon" className="w-10 h-10" />
                     </div>
                     <h3 className="title-label">{title}</h3>
-                    <div className="mt-5">
+                    <div className="mt-5 mb-12">
                         <div className="headshot-box">
                             <img 
                                 src={headshotUrl} 
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
                     </p>
 
                     {/* Resume Boxes */}
-                    <div className="space-y-6">
+                    <div className="space-y-6 pb-5">
                         <div className="resume-card">
                             <div className="flex-justify-center">
                                 <h2 className="experience-title">SDE (Full Stack) · Expedia Group</h2>
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
                                 Led as the integration engineer facilitating collaboration between software and hardware teams, ensuring seamless synergy in project development.
                             </p>
                             <div className="mt-4 flex flex-wrap gap-2">
-                                <span className="pill-label">HTML</span>
+                                <span className="pill-label">JavaScript</span>
                                 <span className="pill-label">React</span>
                                 <span className="pill-label">SQL</span>
                                 <span className="pill-label">C</span>
