@@ -1,0 +1,33 @@
+.header-link {
+    @apply text-gray-100 hover:text-white transition-colors px-3;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.header-style {
+    @apply bg-gray-800 text-gray-100 p-4 shadow-md w-full;
+}
+
+.flex-justify {
+    @apply flex items-center justify-center w-full overflow-hidden;
+}
+
+.header-container {
+    @apply max-w-7xl mx-auto flex justify-between;
+}
+
+@media (max-width: 640px) {
+    .header-link {
+        font-size: .85rem;
+        padding: 6px 8px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    .flex {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

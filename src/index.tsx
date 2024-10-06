@@ -4,6 +4,7 @@ import './styles/index.css';
 import './styles/components/research.css';
 import './styles/components/widgets.css';
 import './styles/components/home.css';
+import './styles/header.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
