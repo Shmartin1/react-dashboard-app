@@ -37,6 +37,11 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
     }, 300);
   };
 
+  const getTimeInTimezone = (date: Date, timeZone: string): Date => {
+    const timeString = date.toLocaleString("en-US", { timeZone });
+    return new Date(timeString);
+  };
+
   const formatTime = (date: Date, timeZone: string): string =>
     new Intl.DateTimeFormat('en-US', {
       timeZone: timeZone,
@@ -80,8 +85,10 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
           {isAnalog ? (
             <div className="flex justify-center items-center h-full">
               <Clock 
-                value={new Date(formatTime(currentTime, timezone))} 
+                value={getTimeInTimezone(currentTime, timezone)}
                 renderNumbers={true}
+                size={150}
+                className="custom-clock"
               />
             </div>
           ) : (
