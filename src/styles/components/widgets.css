@@ -29,3 +29,14 @@
 .timestamp-label {
     @apply text-xs text-gray-800 dark:text-gray-400 select-none;
 }
+
+.custom-clock {
+    width: 150px;
+    height: 150px;
+}
+
+.custom-clock .react-clock__mark__number {
+    font-size: 1.2rem;
+    transform: translate(0, -50px);
+}
+  
