@@ -1,0 +1,31 @@
+.widget-title {
+    @apply text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 select-none;
+}
+
+.widget-card {
+    @apply bg-white dark:bg-gray-800 shadow-md rounded-lg p-6 transition-colors duration-300;
+}
+
+.widget-container {
+    @apply shadow-md hover:shadow-xl transition-shadow duration-300;
+}
+
+.trash-icon-hover {
+    @apply h-5 w-5 text-gray-700 dark:text-gray-400 cursor-pointer hover:text-red-500 mb-4;
+}
+
+.unit-dropdown {
+    @apply bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-4 rounded w-full;
+}
+
+.task-summary-label {
+    @apply text-gray-700 dark:text-gray-200
+}
+
+.recent-message {
+    @apply bg-gray-100 dark:bg-gray-700 p-3 rounded-lg;
+}
+
+.timestamp-label {
+    @apply text-xs text-gray-800 dark:text-gray-400 select-none;
+}

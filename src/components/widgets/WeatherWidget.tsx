@@ -113,7 +113,7 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ className }) => {
         <select
           value={temperatureUnit}
           onChange={handleUnitChange}
-          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-4 rounded w-full"
+          className="unit-dropdown"
         >
           <option value="imperial">Fahrenheit (°F)</option>
           <option value="metric">Celsius (°C)</option>

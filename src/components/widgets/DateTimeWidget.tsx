@@ -43,10 +43,16 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
       hour: 'numeric',
       minute: 'numeric',
       second: 'numeric',
+      hour12: true,
     }).format(date);
 
   const formatDate = (date: Date, timeZone: string): React.ReactNode[] => {
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric', timeZone };
+    const options: Intl.DateTimeFormatOptions = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      timeZone 
+    };
     return new Intl.DateTimeFormat('en-US', options)
       .formatToParts(date)
       .map((part, index) =>
@@ -59,15 +65,6 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
         )
       );
   };
-
-  const getTimeInTimezone = (date: Date, timeZone: string): Date => {
-    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timeZone }));
-    const offset = tzDate.getTime() - utcDate.getTime();
-    return new Date(date.getTime() + offset);
-  };
-
-  const timeInSelectedTimezone = getTimeInTimezone(currentTime, timezone);
 
   return (
     <div className={`widget-card ${className}`}>
@@ -82,12 +79,15 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
         >
           {isAnalog ? (
             <div className="flex justify-center items-center h-full">
-              <Clock value={timeInSelectedTimezone} />
+              <Clock 
+                value={new Date(formatTime(currentTime, timezone))} 
+                renderNumbers={true}
+              />
             </div>
           ) : (
             <div className="mt-4">
-              {formatDate(timeInSelectedTimezone, timezone)} <br />
-              {formatTime(timeInSelectedTimezone, timezone)}
+              {formatDate(currentTime, timezone)} <br />
+              {formatTime(currentTime, timezone)}
             </div>
           )}
         </div>
@@ -110,7 +110,7 @@ const DateTimeWidget: React.FC<DateTimeWidgetProps> = ({ className }) => {
         <select
           value={timezone}
           onChange={handleTimezoneChange}
-          className="bg-gray-800 dark:bg-gray-700 text-gray-100 py-2 px-1 rounded w-52 text-sm"
+          className="unit-dropdown"
         >
           {timezones.map((tz) => (
             <option key={tz} value={tz}>
