@@ -87,11 +87,10 @@ const Resume: React.FC = () => {
           </p>
         </div>
 
-        {/* Download Button */}
         <div className="flex justify-center mt-6">
           <a 
-            href="JoshuaMartinResume.pdf" 
-            download
+            href="/JoshuaMartinResume.pdf"
+            download="JoshuaMartinResume.pdf"
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
           >
             Download Resume PDF
