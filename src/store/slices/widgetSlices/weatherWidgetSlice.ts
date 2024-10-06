@@ -64,7 +64,7 @@ export const fetchCitySuggestions = createAsyncThunk(
     }
     if (query.length === 0) return [];
     const response = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`
     );
     return response.data;
   }
