@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import './styles/components/research.css'
-import './styles/components/widgets.css'
+import './styles/components/research.css';
+import './styles/components/widgets.css';
+import './styles/components/home.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';

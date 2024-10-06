@@ -1,0 +1,51 @@
+.name-label {
+    @apply text-4xl font-bold mb-1 text-gray-800 dark:text-white;
+}
+
+.title-label {
+    @apply text-xl mb-4 text-gray-800 dark:text-white;
+}
+
+.name-favicon-row {
+    @apply flex items-center space-x-2 md:justify-start justify-center;
+}
+
+.home-container {
+    @apply flex min-h-screen bg-gray-100 dark:bg-gray-900 pt-8 justify-center;
+}
+
+.left-side {
+    @apply w-full md:w-1/2 p-8 flex flex-col items-center md:items-start text-center md:text-left;
+}
+
+.left-box {
+    @apply flex flex-col md:flex-row w-full max-w-7xl lg:mx-20 xl:mx-40;
+}
+
+.right-side {
+    @apply w-full md:w-1/2 p-8 lg:p-10 text-sm;
+}
+
+.bio-text {
+    @apply mb-8 text-gray-900 dark:text-gray-300;
+}
+
+.headshot {
+    @apply w-full h-full object-cover object-top;
+}
+
+.headshot-box {
+    @apply overflow-hidden rounded-full w-48 h-48 border-4 border-blue-500 mx-auto md:mx-0;
+}
+
+.experience-title {
+    @apply text-xl font-semibold text-gray-800 dark:text-white;
+}
+
+.experience-description {
+    @apply mt-3 text-xs text-gray-900 dark:text-gray-300;
+}
+
+.year-label {
+    @apply text-sm text-gray-600 dark:text-gray-400 ml-2;
+}
