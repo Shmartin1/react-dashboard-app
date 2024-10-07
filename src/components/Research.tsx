@@ -10,8 +10,8 @@ const Research: React.FC = () => {
 
         <div className="space-y-6">
           {/* Paper 1 */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          <div className="research-box">
+            <h2 className="paper-title">
               Dimensionality Reduction, Compression, and Feature Extraction for Higher-Dimensional Data
             </h2>
             <p className="research-text">
@@ -48,15 +48,15 @@ const Research: React.FC = () => {
             <a 
               href="/research/Compression_Higher_Dimensional_Data.pdf" 
               download
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="download-button"
             >
               Download PDF
             </a>
           </div>
 
           {/* Paper 2 */}
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-3">
+          <div className="research-box">
+            <h2 className="paper-title">
               Advantages of Lattice Based Cryptography
             </h2>
             <p className="research-text">
@@ -82,7 +82,7 @@ const Research: React.FC = () => {
             <a 
               href="/research/Lattice_Based_Cryptography.pdf" 
               download
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              className="download-button"
             >
               Download PDF
             </a>

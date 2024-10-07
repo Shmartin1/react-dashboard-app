@@ -59,6 +59,10 @@
   .resume-card {
     @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
   }
+
+  .download-button {
+    @apply px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors;
+  }
 }
 
 /* Dark mode specific styles */
