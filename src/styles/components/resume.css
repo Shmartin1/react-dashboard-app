@@ -1,0 +1,23 @@
+.page-container {
+    @apply min-h-screen bg-gray-100 dark:bg-gray-900 p-8 flex flex-col justify-center items-center;
+}
+
+.page-title {
+    @apply text-4xl font-bold text-gray-800 dark:text-white mb-8;
+}
+
+.resume-bullet {
+    @apply text-gray-800 dark:text-gray-300;
+}
+
+.profesional-summary-title {
+    @apply text-2xl font-semibold text-gray-800 dark:text-white mb-4;
+}
+
+.section-title {
+    @apply text-xl font-semibold text-gray-800 dark:text-white mb-2;
+}
+
+.job-ul {
+    @apply list-disc list-inside resume-bullet space-y-2 mt-2;
+}

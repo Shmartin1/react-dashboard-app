@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../store'; // You'll need to create this file
+import { RootState, AppDispatch } from '../../store';
 import { fetchChartData } from '../../store/slices/widgetSlices/chartWidgetSlice';
 import LineChart from '../LineChart';
 

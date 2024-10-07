@@ -39,4 +39,16 @@
     font-size: 1.2rem;
     transform: translate(0, -50px);
 }
+
+.progress-button {
+    @apply bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300 mt-4;
+}
+
+.progress-bar {
+    @apply bg-blue-600 h-4 rounded-full transition-all duration-500;
+}
+
+.stat-val {
+    @apply text-2xl font-bold text-gray-900 dark:text-gray-300;
+}
   

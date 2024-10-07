@@ -16,8 +16,8 @@ const StatisticsWidget: React.FC<StatisticsWidgetProps> = ({ className }) => {
       <div className="grid grid-cols-3 gap-4">
         {stats.map((stat) => (
           <div key={stat.id} className="flex flex-col items-center mb-4">
-            <p className="text-2xl font-bold text-gray-900 dark:text-gray-300">{stat.value}</p>
-            <p className="text-gray-500 dark:text-gray-200">{stat.label}</p>
+            <p className="stat-val">{stat.value}</p>
+            <p className="task-summary-label">{stat.label}</p>
           </div>
         ))}
       </div>

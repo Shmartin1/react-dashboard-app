@@ -45,10 +45,10 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({ className }) => {
       <h2 className="widget-title">Project Progress</h2>
       
       {/* Progress Bar */}
-      <p className="text-gray-700 dark:text-gray-200 mb-2">Dashboard Redesign</p>
+      <p className="task-summary-label mb-2">Dashboard Redesign</p>
       <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
         <div
-          className="bg-blue-600 h-4 rounded-full transition-all duration-500"
+          className="progress-bar"
           style={{ width: `${progress}%` }}
         ></div>
       </div>
@@ -58,7 +58,7 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({ className }) => {
         {/* Button to start progress */}
         <button
           onClick={handleProgress}
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300 mt-4"
+          className="progress-button"
           disabled={isProgressing}
         >
           {
@@ -70,7 +70,7 @@ const ProgressWidget: React.FC<ProgressWidgetProps> = ({ className }) => {
         {/* Conditionally render Restart button */}
         {progress === 100 && 
           <button 
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300 mt-4"
+            className="progress-button"
             onClick={handleReset}
           >
             Reset
