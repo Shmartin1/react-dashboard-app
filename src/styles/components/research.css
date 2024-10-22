@@ -3,7 +3,7 @@
 }
 
 .research-text {
-    @apply message-text indent-6 text-sm mb-4;
+    @apply text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed;
 }
 
 .research-box {

@@ -5,6 +5,7 @@ import './styles/components/research.css';
 import './styles/components/widgets.css';
 import './styles/components/home.css';
 import './styles/components/resume.css';
+import './styles/components/projects.css';
 import './styles/header.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

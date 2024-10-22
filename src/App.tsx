@@ -7,6 +7,7 @@ import Resume from './components/Resume';
 import Dashboard from './components/Dashboard';
 import Settings from './components/Settings';
 import Research from './components/Research';
+import Projects from './components/Projects';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/research" element={<Research />} />
                 <Route path="/resume" element={<Resume />} />
+                <Route path="/projects" element={<Projects/>} />
               </Routes>
             </main>
           </div>
