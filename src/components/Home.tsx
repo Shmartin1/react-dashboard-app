@@ -52,7 +52,11 @@ const Home: React.FC = () => {
                         >
                             resume
                         </Link>{' '}
-                        and a collection of projects and{' '}
+                        and a collection of{' '}
+                        <Link
+                            to='./projects'
+                            className="nav-link"
+                        >projects</Link>{' '} and{' '}
                         <Link
                             to='/research'
                             className="nav-link"
