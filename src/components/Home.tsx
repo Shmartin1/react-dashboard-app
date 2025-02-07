@@ -75,8 +75,9 @@ const Home: React.FC = () => {
                                 <span className="year-label">2022 — Present</span>
                             </div>
                             <p className="experience-description">
-                                Led the architecture and implementation of a dynamic messaging rules engine, enhancing the capability to deliver customized messaging.
-                                Oversaw the maintenance of diverse backend services and progressive web applications, ensuring their reliability, performance, and alignment with project goals.
+                                Designed and implemented a dynamic messaging rules engine, enhancing the capability to deliver customized messaging, achieving an initial cost savings of $11.1M.
+                                Designed and implemented a scalable microservices architecture for a high-traffic application, reducing downtime by 10% and improving response time by 30%.
+                                Mentored 2 junior developers, resulting in a 30% reduction in onboarding time and higher code quality standards.
                             </p>
                             <div className="mt-4 flex flex-wrap gap-2">
                                 <span className="pill-label">Java</span>
@@ -93,8 +94,8 @@ const Home: React.FC = () => {
                                 <span className="year-label">2020 — 2022</span>
                             </div>
                             <p className="experience-description">
-                                Oversaw the maintenance and development of applications and APIs across a portfolio of more than twenty integrated financial technology products.
-                                Functioned as the lead software engineer responsible for tax accounting and trust investment management applications, demonstrating proficiency in complex financial systems.
+                                Led the development and maintenance of 20+ financial technology applications with a focus on tax accounting and trust investment management.
+                                Achieved notable performance improvements, including a 40% reduction in average build times and 64% faster load times for web applications, contributing to enhanced operational efficiency.
                             </p>
                             <div className="mt-4 flex flex-wrap gap-2">
                                 <span className="pill-label">C# .NET</span>

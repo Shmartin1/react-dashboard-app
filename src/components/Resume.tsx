@@ -29,9 +29,10 @@ const Resume: React.FC = () => {
               <h4 className="text-lg font-semibold">Software Development Engineer (Full Stack) - Expedia Group</h4>
               <p className="text-sm resume-bullet">Nov 2022 - Present</p>
               <ul className="job-ul">
-                <li>Led the architecture and implementation of a dynamic messaging rules engine, enhancing the capability to deliver customized messaging.</li>
-                <li>Designed and managed infrastructure components including AWS resources, continuous integration pipelines, and monitoring systems.</li>
-                <li>Collaborated with stakeholders to interpret features and extract requirements.</li>
+                <li>Designed and implemented a dynamic messaging rules engine, enhancing the capability to deliver customized messaging, achieving an initial cost savings of $11.1M.</li>
+                <li>Designed and managed infrastructure components, encompassing AWS resources, continuous integration and rollback pipelines, and application monitoring and alerting systems, ensuring robust and scalable operational environments.</li>
+                <li>Designed and implemented a scalable microservices architecture for a high-traffic application, reducing downtime by 10% and improving response time by 30%.</li>
+                <li>Mentored 2 junior developers, resulting in a 30% reduction in onboarding time and higher code quality standards.</li>
               </ul>
             </div>
 
@@ -39,9 +40,9 @@ const Resume: React.FC = () => {
               <h4 className="text-lg font-semibold">Software Development Engineer (Full Stack) - Infovisa Inc.</h4>
               <p className="text-sm resume-bullet">Aug 2020 - Nov 2022</p>
               <ul className="job-ul">
-                <li>Maintained and developed applications and APIs across over twenty integrated financial products.</li>
-                <li>Improved web application load times by 64% and reduced build times by 40%.</li>
-                <li>Led the development of continuous integration tools and robust testing practices.</li>
+                <li>Led the development and maintenance of 20+ financial technology applications with a focus on tax accounting and trust investment management.</li>
+                <li>Managed the development of continuous integration tools, automated and unit tests, showcasing a commitment to implementing robust testing practices and efficient build processes.</li>
+                <li>Achieved notable performance improvements, including a 40% reduction in average build times and 64% faster load times for web applications, contributing to enhanced operational efficiency.</li>
               </ul>
             </div>
 
