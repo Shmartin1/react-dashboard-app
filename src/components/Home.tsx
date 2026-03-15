@@ -41,17 +41,17 @@ const Home: React.FC = () => {
                     </p>
                     <p className="bio-text">
                     This website serves as a portfolio of my 
-                    work and technical interests, highlighting {' '}
+                    work and technical interests, showcasing{' '}
                         <Link
                             to='./projects'
                             className="nav-link"
-                        >projects</Link>{' '}, {' '}
+                        > projects</Link>{''}, {' '}
                         <Link
                             to='/research'
                             className="nav-link"
                         >
-                            research
-                        </Link>{' '}, and {' '}
+                        research
+                        </Link>{''}, and {' '}
                         <Link
                             to='/resume'
                             className="nav-link"
