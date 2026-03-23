@@ -36,7 +36,7 @@ const Home: React.FC = () => {
                     reliable, performant systems that operate at scale.
                     </p>
                     <p className="bio-text">
-                    Previously, I worked at Expedia Group on a high-traffic scalable microservice architecture systems. I was also the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system, 
+                    Previously, I worked at Expedia Group on high-traffic scalable microservices. I was also the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system, 
                     where I developed an embedded system for real-time health metric monitoring and data capture. 
                     </p>
                     <p className="bio-text">
