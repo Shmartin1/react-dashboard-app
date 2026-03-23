@@ -30,49 +30,61 @@ const Home: React.FC = () => {
                 {/* Right side */}
                 <div className="right-side">
                     <p className="bio-text">
-                        I am a software engineer with 5 years of industry experience, as well as demonstrated success contributing to high-impact open-source projects. 
-                        As the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system, I developed an embedded system for real-time health metric monitoring and data capture. 
-                        My expertise spans full-stack, web, and backend development, database architecture, and DevOps.
+                    Hi, I'm Josh a software engineer with 6 years of industry experience building scalable systems and delivering high-impact software. 
+                    I currently work on the Meta Subscriptions team, where I help build and operate products used by billions of people. 
+                    My background spans full-stack and backend development, distributed systems, database architecture, and DevOps, with a focus on building 
+                    reliable, performant systems that operate at scale.
                     </p>
                     <p className="bio-text">
-                        This website serves as a showcase of my technical skill and experience as a software engineer. 
-                        Here, you'll find an interactive{' '} 
-                        <Link
-                            to='/dashboard'
-                            className="nav-link"
-                        >
-                            dashboard
-                        </Link>{' '}
-                        demonstrating my proficiency with React, Redux Toolkit, 
-                        TypeScript, Tailwind, and more. Beyond the technical demonstration, this site houses my professional background, 
-                        including my{' '}
-                        <Link
-                            to='/resume'
-                            className="nav-link"
-                        >
-                            resume
-                        </Link>{' '}
-                        and a collection of{' '}
+                    Previously, I worked at Expedia Group on high-traffic scalable microservices. I was also the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system, 
+                    where I developed an embedded system for real-time health metric monitoring and data capture. 
+                    </p>
+                    <p className="bio-text">
+                    This website serves as a portfolio of my 
+                    work and technical interests, showcasing{' '}
                         <Link
                             to='./projects'
                             className="nav-link"
-                        >projects</Link>{' '} and{' '}
+                        > projects</Link>{''}, {' '}
                         <Link
                             to='/research'
                             className="nav-link"
                         >
-                            research
+                        research
+                        </Link>{''}, and {' '}
+                        <Link
+                            to='/resume'
+                            className="nav-link"
+                        >
+                            experience
                         </Link>{' '}
-                        that highlight my problem-solving abilities and 
-                        coding expertise.
+                        that highlight my problem-solving abilities and coding expertise.
                     </p>
 
                     {/* Resume Boxes */}
                     <div className="space-y-6 pb-5">
+                    <div className="resume-card">
+                            <div className="flex-justify-center">
+                                <h2 className="experience-title">SDE (Full Stack) · Meta</h2>
+                                <span className="year-label">2025 — Present</span>
+                            </div>
+                            <p className="experience-description">
+                                Build, maintain, and operate benefits for Meta Subscriptions &
+                                leading efforts to modernize the AI workflows used to accelerate the software lifecycle.
+                            </p>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                <span className="pill-label">Hack</span>
+                                <span className="pill-label">Kotlin</span>
+                                <span className="pill-label">Python</span>
+                                <span className="pill-label">React</span>
+                                <span className="pill-label">GraphQL</span>
+                            </div>
+                        </div>
+
                         <div className="resume-card">
                             <div className="flex-justify-center">
                                 <h2 className="experience-title">SDE (Full Stack) · Expedia Group</h2>
-                                <span className="year-label">2022 — Present</span>
+                                <span className="year-label">2022 — 2025</span>
                             </div>
                             <p className="experience-description">
                                 Designed and implemented a dynamic messaging rules engine, enhancing the capability to deliver customized messaging, achieving an initial cost savings of $11.1M.

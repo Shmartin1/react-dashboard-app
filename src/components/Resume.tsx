@@ -25,6 +25,16 @@ const Resume: React.FC = () => {
             Employment
           </h3>
           <div className="space-y-4">
+
+            <div>
+              <h4 className="text-lg font-semibold">Software Development Engineer (Full Stack) - Meta</h4>
+              <p className="text-sm resume-bullet">2025 - Present</p>
+              <ul className="job-ul">
+                <li>Build, maintain, and operate benefits for Meta Subscriptions</li>
+                <li>Lead efforts to modernize the AI workflows used to accelerate the software lifecycle.</li>
+              </ul>
+            </div>
+
             <div>
               <h4 className="text-lg font-semibold">Software Development Engineer (Full Stack) - Expedia Group</h4>
               <p className="text-sm resume-bullet">Nov 2022 - Present</p>
