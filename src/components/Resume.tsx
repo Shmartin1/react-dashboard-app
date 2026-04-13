@@ -37,7 +37,7 @@ const Resume: React.FC = () => {
 
             <div>
               <h4 className="text-lg font-semibold">Software Development Engineer (Full Stack) - Expedia Group</h4>
-              <p className="text-sm resume-bullet">Nov 2022 - Present</p>
+              <p className="text-sm resume-bullet">Nov 2022 - 2025</p>
               <ul className="job-ul">
                 <li>Designed and implemented a dynamic messaging rules engine, enhancing the capability to deliver customized messaging, achieving an initial cost savings of $11.1M.</li>
                 <li>Designed and managed infrastructure components, encompassing AWS resources, continuous integration and rollback pipelines, and application monitoring and alerting systems, ensuring robust and scalable operational environments.</li>
