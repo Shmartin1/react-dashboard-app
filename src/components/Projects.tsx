@@ -24,16 +24,19 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="page-title">
-          Personal Projects
-        </h1>
+    <div className="page-shell">
+      <div className="app-main space-y-8">
+        <div>
+          <p className="page-eyebrow">Selected Work</p>
+          <h1 className="page-title">
+            Personal Projects
+          </h1>
+        </div>
 
         <div className="space-y-8">
           {projects.map((project, index) => (
             <div key={index} className="project-card">
-              <div className="flex justify-between items-start">
+              <div className="flex items-start justify-between gap-4">
                 <h2 className="project-title">
                   {project.title}
                 </h2>

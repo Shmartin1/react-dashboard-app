@@ -1,72 +1,189 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Font Imports */
 @font-face {
   font-family: 'HelveticaNeueRoman';
   src: url('../assets/fonts/HelveticaNeueRoman.otf') format('truetype');
 }
 
-
-/* Example toggle checkbox styling */
-.toggle-checkbox {
-  appearance: none;
-  width: 40px;
-  height: 20px;
-  background: #ccc;
-  border-radius: 9999px;
-  position: relative;
-  transition: background-color 0.2s ease;
-  cursor: pointer;
+:root {
+  --bg: #0f1724;
+  --bg-accent: #172235;
+  --surface: rgba(17, 26, 39, 0.84);
+  --surface-strong: rgba(18, 28, 42, 0.93);
+  --surface-muted: rgba(27, 39, 57, 0.8);
+  --text: #edf2f7;
+  --text-muted: #d4dceb;
+  --heading: #f8fafc;
+  --border: rgba(222, 234, 248, 0.11);
+  --border-strong: rgba(222, 234, 248, 0.16);
+  --shadow: 0 24px 70px rgba(2, 6, 23, 0.45);
+  --shadow-soft: 0 16px 36px rgba(2, 6, 23, 0.3);
+  --accent: #d4ae6d;
+  --accent-strong: #eed7a7;
+  --accent-soft: rgba(212, 174, 109, 0.14);
+  --navy: #0b1321;
+  --success-bg: rgba(54, 179, 126, 0.16);
+  --success-text: #8be0b8;
+  --warning-bg: rgba(232, 172, 71, 0.18);
+  --warning-text: #f4cf89;
+  --danger-bg: rgba(228, 109, 109, 0.17);
+  --danger-text: #ffb2b2;
 }
 
-.toggle-checkbox:checked {
-  background: #4c51bf;
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
-.toggle-checkbox::before {
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 8% 92%, rgba(88, 118, 214, 0.24), transparent 42%),
+    radial-gradient(circle at 82% 22%, rgba(72, 132, 118, 0.16), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(32, 70, 122, 0.18), transparent 34%),
+    linear-gradient(180deg, #182339 0%, var(--bg-accent) 24%, var(--bg) 100%);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body::before {
   content: '';
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 9999px;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.2s ease;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.2), transparent 80%);
+  opacity: 0.4;
 }
 
-.toggle-checkbox:checked::before {
-  transform: translateX(20px);
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Manrope', sans-serif;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+  }
 }
 
 @layer components {
+  .app-shell {
+    @apply min-h-screen;
+  }
+
+  .app-main {
+    @apply mx-auto w-full max-w-7xl px-4 pb-16 pt-6 sm:px-6 lg:px-8 lg:pt-8;
+  }
+
+  .page-shell {
+    @apply min-h-screen;
+  }
+
+  .page-title {
+    @apply text-center text-5xl font-semibold sm:text-6xl;
+  }
+
+  .page-eyebrow {
+    color: var(--accent);
+    @apply mb-3 text-center text-xs font-semibold uppercase tracking-[0.35em];
+  }
+
+  .section-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(20px);
+    @apply rounded-[28px];
+  }
+
+  .soft-panel {
+    background: var(--surface-muted);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-3xl;
+  }
+
   .message-text {
-    @apply text-gray-900 dark:text-gray-300 select-none;
+    color: var(--text);
+    @apply select-none;
   }
 
   .flex-justify-center {
-    @apply flex justify-between items-center
+    @apply flex items-center justify-between gap-4;
   }
 
   .pill-label {
-    @apply bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-xs
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    border: 1px solid rgba(165, 123, 57, 0.14);
+    @apply rounded-full px-3 py-1 text-xs font-semibold tracking-[0.12em] uppercase;
   }
 
   .resume-card {
-    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300;
+    background: linear-gradient(180deg, var(--surface-strong) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-[24px] p-6 transition-all duration-300;
+  }
+
+  .resume-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(165, 123, 57, 0.24);
   }
 
   .download-button {
-    @apply px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors;
+    background: var(--navy);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200;
+  }
+
+  .download-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 34px rgba(17, 35, 61, 0.22);
+  }
+
+  .eyebrow-label {
+    color: var(--accent);
+    @apply text-xs font-semibold uppercase tracking-[0.35em];
+  }
+
+  .body-copy {
+    color: var(--text-muted);
+    @apply leading-8;
   }
 }
 
-/* Dark mode specific styles */
-body.dark {
-  background-color: #1A202C; /* Dark background */
-  color: #F7FAFC; /* Light text */
+@media (max-width: 640px) {
+  body,
+  html {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .page-title {
+    @apply text-4xl;
+  }
+
+  .pill-label {
+    @apply text-[11px];
+  }
 }

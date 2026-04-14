@@ -1,33 +1,37 @@
-.header-link {
-    @apply text-gray-100 hover:text-white transition-colors px-3;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
 .header-style {
-    @apply bg-gray-800 text-gray-100 p-4 shadow-md w-full;
-}
-
-.flex-justify {
-    @apply flex items-center justify-center w-full overflow-hidden;
+  background: rgba(15, 23, 36, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  @apply sticky top-0 z-50 w-full;
 }
 
 .header-container {
-    @apply max-w-7xl mx-auto flex justify-between;
+  @apply mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-6 lg:px-8;
+}
+
+.flex-justify {
+  @apply flex flex-wrap items-center justify-center gap-2 sm:gap-3;
+}
+
+.header-link {
+  color: rgba(248, 250, 252, 0.82);
+  border: 1px solid transparent;
+  @apply rounded-full px-4 py-2 text-sm font-semibold tracking-[0.12em] uppercase transition-all duration-200;
+  white-space: nowrap;
+}
+
+.header-link:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 640px) {
-    .header-link {
-        font-size: .85rem;
-        padding: 6px 8px;
-    }
+  .header-container {
+    @apply px-3 py-3;
+  }
 
-    header {
-        padding: 20px;
-    }
-
-    .flex {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+  .header-link {
+    @apply px-3 py-2 text-[11px];
+  }
 }

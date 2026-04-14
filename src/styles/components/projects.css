@@ -1,15 +1,29 @@
 .project-card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
+  background: linear-gradient(180deg, var(--surface-strong) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  @apply rounded-[26px] p-7 transition-all duration-300;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
 }
 
 .project-title {
-    @apply text-2xl font-semibold text-gray-800 dark:text-white mb-4;
+  @apply mb-4 text-3xl font-semibold;
 }
 
 .project-description {
-    @apply text-gray-600 dark:text-gray-300 mb-4;
+  color: var(--text-muted);
+  @apply mb-5 leading-8;
 }
 
 .github-link {
-    @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200;
+  color: var(--text-muted);
+  @apply rounded-full p-2 transition-colors duration-200;
+}
+
+.github-link:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
 }

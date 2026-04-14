@@ -10,20 +10,22 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gray-800 text-white py-6">
-      <div className="container mx-auto flex justify-center items-center">
+    <footer className="px-4 pb-8 pt-2 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl justify-center">
+        <div className="soft-panel flex min-w-[20rem] items-center justify-center gap-6 px-8 py-3 sm:min-w-[26rem] sm:gap-8 sm:px-10">
         {socialLinks.map(({ Icon, href, label }) => (
           <a
             key={label}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-3 hover:text-gray-300 transition-colors duration-200"
+            className="rounded-full p-3 text-[color:var(--text-muted)] transition-all duration-200 hover:bg-[color:var(--accent-soft)] hover:text-[color:var(--accent)]"
             aria-label={label}
           >
             <Icon size={24} />
           </a>
         ))}
+        </div>
       </div>
     </footer>
   );

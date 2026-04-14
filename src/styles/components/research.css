@@ -1,23 +1,59 @@
 .nav-link {
-    @apply text-blue-500 font-bold hover:underline hover:shadow-lg transition-shadow duration-300;
+  color: var(--accent);
+  @apply font-semibold transition-colors duration-200;
+}
+
+.nav-link:hover {
+  color: var(--accent-strong);
 }
 
 .research-text {
-    @apply text-gray-700 dark:text-gray-300 text-sm mb-4 leading-relaxed;
+  color: var(--text-muted);
+  @apply text-sm;
+  line-height: 1.4rem;
 }
 
 .research-box {
-    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg;
+  background: linear-gradient(180deg, var(--surface-strong) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  @apply rounded-[26px] p-7;
+}
+
+.research-header {
+  border-bottom: 1px solid var(--border);
+  @apply mb-6 pb-5;
+}
+
+.research-label {
+  color: var(--accent);
+  @apply mb-2 text-xs font-semibold uppercase tracking-[0.3em];
+}
+
+.research-content {
+  @apply space-y-5;
+}
+
+.research-section {
+  background: rgba(27, 39, 57, 0.6);
+  border: 1px solid var(--border);
+  @apply rounded-[20px] p-5;
+}
+
+.research-section-title {
+  color: var(--heading);
+  @apply mb-3 text-lg font-semibold tracking-[-0.02em];
+}
+
+.research-actions {
+  border-top: 1px solid var(--border);
+  @apply mt-6 flex justify-end pt-5;
 }
 
 .paper-title {
-    @apply text-xl font-semibold text-gray-800 dark:text-white mb-3;
-}
-
-.page-title {
-    @apply text-4xl font-bold text-gray-800 dark:text-white mb-6 text-center;
+  @apply text-3xl font-semibold;
 }
 
 .page-container {
-    @apply min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col;
+  @apply min-h-screen;
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import './styles/components/research.css';
-import './styles/components/widgets.css';
 import './styles/components/home.css';
 import './styles/components/resume.css';
 import './styles/components/projects.css';
