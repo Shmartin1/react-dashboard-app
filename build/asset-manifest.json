@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.25e3eabc.css",
+    "main.js": "/static/js/main.9865b766.js",
+    "static/js/453.f232feba.chunk.js": "/static/js/453.f232feba.chunk.js",
+    "static/media/HelveticaNeueRoman.otf": "/static/media/HelveticaNeueRoman.ddb209473d7df560da50.otf",
+    "static/media/josh_martin_headshot.jpg": "/static/media/josh_martin_headshot.73b5ee551dc9f66a47f5.jpg",
+    "index.html": "/index.html",
+    "static/media/favicon.svg": "/static/media/favicon.370fffaf75dda1c04bebef4644421712.svg",
+    "main.25e3eabc.css.map": "/static/css/main.25e3eabc.css.map",
+    "main.9865b766.js.map": "/static/js/main.9865b766.js.map",
+    "453.f232feba.chunk.js.map": "/static/js/453.f232feba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.25e3eabc.css",
+    "static/js/main.9865b766.js"
+  ]
+}

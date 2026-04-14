@@ -4,8 +4,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Resume from './components/Resume';
-import Dashboard from './components/Dashboard';
-import Settings from './components/Settings';
 import Research from './components/Research';
 import Projects from './components/Projects';
 import { Provider } from 'react-redux';
@@ -15,23 +13,19 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Header />
-        <div style={{ display: 'flex' }}>
-          <div style={{ flex: 1 }}>
-            <main className="flex-grow overflow-auto" style={{ maxHeight: 'calc(100vh - 64px - 64px)' }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/research" element={<Research />} />
-                <Route path="/resume" element={<Resume />} />
-                <Route path="/projects" element={<Projects/>} />
-              </Routes>
-            </main>
-          </div>
+        <div className="app-shell">
+          <Header />
+          <main className="overflow-x-hidden">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/research" element={<Research />} />
+              <Route path="/resume" element={<Resume />} />
+              <Route path="/projects" element={<Projects />} />
+            </Routes>
+          </main>
+          <Footer />
         </div>
       </Router>
-      <Footer />
     </Provider>
   );
 }
