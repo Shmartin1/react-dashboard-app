@@ -73,3 +73,10 @@
   .resume-grid { grid-template-columns: 1fr; gap: 0; }
   .resume-bullet { font-size: 13px; }
 }
+.resume-page .app-main { padding-block: 36px 40px; }
+.resume-page .page-heading { padding-bottom: 28px; margin-bottom: 28px; }
+.resume-page .page-title { margin-top: 12px; }
+.resume-page .resume-grid > .resume-section:last-child { padding-bottom: 0; }
+@media (min-width: 701px) { .resume-page .resume-grid > .resume-section { padding-bottom: 0; } }
+@media (max-width: 700px) { .resume-page .app-main { padding-block: 28px 32px; } }
+@media print { .resume-page .app-main { padding: 0; } }

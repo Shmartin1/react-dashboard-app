@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Resume from './components/Resume';
 import Research from './components/Research';
 import Projects from './components/Projects';
+import Music from './components/Music';
 import { MotionPreferences } from './components/MotionPreferences';
 import SmoothAnchor, { scrollToTop } from './components/SmoothAnchor';
 
@@ -16,7 +17,7 @@ const RouteContent: React.FC = () => {
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const titles: Record<string, string> = { '/': 'Software Engineer', '/projects': 'Projects', '/research': 'Research', '/resume': 'Resume' };
+    const titles: Record<string, string> = { '/': 'Software Engineer', '/projects': 'Projects', '/research': 'Research', '/resume': 'Resume', '/music': 'Music' };
     document.title = `Joshua Martin — ${titles[pathname] || 'Software Engineer'}`;
     if (previousPath.current !== pathname) {
       scrollToTop();
@@ -32,6 +33,7 @@ const RouteContent: React.FC = () => {
         <Route path="/research" element={<Research />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/music" element={<Music />} />
       </Routes>
     </div>
   </main>;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowUpRight, Code2, FileText } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Code2, FileText, Headphones } from 'lucide-react';
 import { RootState } from '../store';
 import { experiences } from '../data/portfolio';
 import Reveal from './Reveal';
@@ -93,6 +93,7 @@ const Home: React.FC = () => {
         <div className="explore-grid">
           <div className="content-card explore-card"><Link to="/projects"><Code2 size={26} strokeWidth={1.4} aria-hidden="true" /><span className="explore-number">BUILD</span><h3>Personal projects</h3><p>React, TypeScript, mobile development, and AI.</p><span className="text-link">Explore projects <ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
           <div className="content-card explore-card"><Link to="/research"><FileText size={26} strokeWidth={1.4} aria-hidden="true" /><span className="explore-number">EXPLORE</span><h3>Papers & research</h3><p>Dimensionality reduction, data compression, and cryptography.</p><span className="text-link">Read the research <ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
+          <div className="content-card explore-card"><Link to="/music"><Headphones size={26} strokeWidth={1.4} aria-hidden="true" /><span className="explore-number">LISTEN</span><h3>Music & production</h3><p>Original releases and remixes from Forgotten Senses and Wil &amp; Martin.</p><span className="text-link">Explore the music <ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
         </div>
       </section>
     </div>
