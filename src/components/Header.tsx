@@ -18,7 +18,7 @@ const Header: React.FC = () => {
       <div className="header-inner">
         <Link to="/" className="wordmark" aria-label="Joshua Martin home" onClick={event => handleCurrentPage(event, '/')}>&lt;<span>jm</span>/&gt;</Link>
         <nav className="primary-nav" aria-label="Primary navigation">
-          {[['/', 'Home'], ['/projects', 'Projects'], ['/resume', 'Resume'], ['/research', 'Research']].map(([path, label]) => (
+          {[['/', 'Home'], ['/projects', 'Projects'], ['/resume', 'Resume'], ['/research', 'Research'], ['/music', 'Music']].map(([path, label]) => (
             <NavLink key={path} to={path} end={path === '/'} onClick={event => handleCurrentPage(event, path)}>{label}</NavLink>
           ))}
         </nav>

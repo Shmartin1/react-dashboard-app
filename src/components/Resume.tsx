@@ -15,7 +15,7 @@ const technologyGroups = [
 
 const Resume: React.FC = () => {
   return (
-    <div className="page-container">
+    <div className="page-container resume-page">
       <div className="app-main">
         <PageHeading eyebrow="My journey" title="My Resume">{resumePdfAvailable && <a href="/JoshuaMartinResume.pdf" download="JoshuaMartinResume.pdf" className="download-button">Download PDF <Download size={16} aria-hidden="true" /></a>}</PageHeading>
 
@@ -48,7 +48,6 @@ const Resume: React.FC = () => {
                 </summary>
                 <ul className="job-ul">
                   {metaHighlights.map(highlight => <li key={highlight}>{highlight}</li>)}
-                  <li>Build, maintain, and operate benefits for Meta Subscriptions</li>
                   <li>Lead efforts to modernize the AI workflows used to accelerate the software lifecycle.</li>
                 </ul>
               </details>
