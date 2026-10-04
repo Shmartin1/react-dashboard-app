@@ -1,133 +1,59 @@
 import React from 'react';
+import { Download, ArrowUpRight } from 'lucide-react';
+import PageHeading from './PageHeading';
+import Reveal from './Reveal';
+import { LatticeVisual, WaveletVisual } from './ResearchVisuals';
 
-const Research: React.FC = () => {
-  return (
-    <div className="page-container">
-      <div className="app-main space-y-8">
-        <div>
-          <p className="page-eyebrow">Papers & Publications</p>
-          <h1 className="page-title">
-            Research
-          </h1>
-        </div>
-
-        <div className="space-y-6">
-          <div className="research-box">
-            <div className="research-header">
-              <div>
-                <p className="research-label">Research Paper</p>
-                <h2 className="paper-title">
-                  Dimensionality Reduction, Compression, and Feature Extraction for Higher-Dimensional Data
-                </h2>
+const Research: React.FC = () => (
+  <div className="page-container">
+    <div className="app-main">
+      <PageHeading eyebrow="Papers & publications" title="Research" />
+      <div className="research-list">
+        <Reveal>
+          <div className="content-card research-box">
+            <article aria-labelledby="wavelet-title">
+              <header className="research-header">
+                <p className="research-label">Signal processing / Literature review</p>
+                <h2 className="paper-title" id="wavelet-title">Dimensionality Reduction, Compression, and Feature Extraction for Higher-Dimensional Data</h2>
+                <p className="paper-byline">Co-authored with Reginald Bolman · University of Nebraska–Lincoln</p>
+              </header>
+              <div className="research-content">
+                <div className="research-summary">
+                  <p className="research-lead">Finding useful structure in complex, high-dimensional data.</p>
+                  <p className="research-text">We compared PCA, manifold learning, and wavelet-based methods for reducing dimensions, compressing data, and extracting features. The review focuses on how these approaches handle sparse, nonlinear signals and the tradeoffs between computation, data size, and information retained.</p>
+                  <p className="research-text">We examined Haar, Daubechies, MODWT, and Mallat transforms through published studies of seismic compression, biomedical signal analysis, and hyperspectral classification. A central theme: multiscale representations can preserve local features that a single global representation may miss.</p>
+                  <div className="tag-list"><span className="pill-label">Wavelets</span><span className="pill-label">Dimensionality reduction</span><span className="pill-label">Feature extraction</span></div>
+                </div>
+                <WaveletVisual />
               </div>
-            </div>
-
-            <div className="research-content">
-              <div className="research-section">
-                <h3 className="research-section-title">Overview</h3>
-                <p className="research-text">
-                  As numerous domains such as biology, astronomy,
-                  geography, etc. produce increasing volumes of data there is a
-                  need for sophisticated automated tools to manage this data.
-                  While there has been much work done in the fields of clustering,
-                  statistical analysis, machine learning etc. real-world data sets
-                  are often hindered by the so-called curse of dimensionality. Most
-                  common clustering algorithms fail to produce meaningful results
-                  on data sets with high dimensionality.
-                  While various techniques have been studied to address this
-                  problem such as "manifold learning", principal component analysis, or many univariate/multivariate feature selection methods
-                  such as ANOVA, there exist clear shortcomings with each of these
-                  methods.
-                </p>
-              </div>
-
-              <div className="research-section">
-                <h3 className="research-section-title">Focus</h3>
-                <p className="research-text">
-                  First, not all data can be assumed to be locally smooth,
-                  not all data can be assumed to be linear, and not all models can
-                  be assumed univariate especially with respect to highly non-linear
-                  data sets with multiple exogenous and endogenous variables such
-                  as hyperspectral images. Additionally the inherent sparsity of
-                  objects within these data sets often leads to results of little to no
-                  significance when applying the aforementioned methods.
-                  Due to issues such as these, much research has gone into
-                  utilizing wavelet transform image processing techniques for
-                  dimensionality reduction, feature detection/extraction problems,
-                  and the related problem of data compression. This paper will
-                  overview the different advances in utilizing wavelets to address
-                  the problems of feature extraction, dimensionality reduction, and
-                  compression from the context of a variety of fields within science
-                  and mathematics.
-                </p>
-              </div>
-            </div>
-
-            <div className="research-actions">
-              <a
-                href="/research/Compression_Higher_Dimensional_Data.pdf"
-                download
-                className="download-button"
-              >
-                Download PDF
-              </a>
-            </div>
+              <div className="research-actions"><a href="/research/Compression_Higher_Dimensional_Data.pdf" target="_blank" rel="noopener noreferrer" className="text-link" aria-label="Read the dimensionality reduction paper">Read paper <ArrowUpRight size={16} aria-hidden="true" /></a><a href="/research/Compression_Higher_Dimensional_Data.pdf" download className="download-button" aria-label="Download dimensionality reduction paper PDF">Download PDF <Download size={16} aria-hidden="true" /></a></div>
+            </article>
           </div>
-
-          <div className="research-box">
-            <div className="research-header">
-              <div>
-                <p className="research-label">Research Paper</p>
-                <h2 className="paper-title">
-                  Advantages of Lattice Based Cryptography
-                </h2>
+        </Reveal>
+        <Reveal>
+          <div className="content-card research-box">
+            <article aria-labelledby="lattice-title">
+              <header className="research-header">
+                <p className="research-label">Cryptography / Literature review</p>
+                <h2 className="paper-title" id="lattice-title">Advantages of Lattice Based Cryptography</h2>
+                <p className="paper-byline">Co-authored with Mark Hollis and Gregory Nail · University of Nebraska–Lincoln</p>
+              </header>
+              <div className="research-content">
+                <div className="research-summary">
+                  <p className="research-lead">Exploring the mathematical foundations of post-quantum security.</p>
+                  <p className="research-text">We surveyed why hard lattice problems are promising foundations for cryptography in the face of quantum threats to RSA, Diffie–Hellman, and elliptic-curve systems. The paper introduces shortest- and closest-vector problems, then examines NTRUEncrypt and Ring Learning with Errors.</p>
+                  <p className="research-text">We compared security assumptions, key sizes, computational costs, and implementation limitations, including NTRU’s malleability concerns. Hardware implementations and IoT applications connect the theory to practice: a difficult mathematical problem is only one part of building a secure system.</p>
+                  <div className="tag-list"><span className="pill-label">Lattices</span><span className="pill-label">NTRUEncrypt</span><span className="pill-label">Ring-LWE</span></div>
+                </div>
+                <LatticeVisual />
               </div>
-            </div>
-
-            <div className="research-content">
-              <div className="research-section">
-                <h3 className="research-section-title">Overview</h3>
-                <p className="research-text">
-                  Lattice cryptography is a field of cryptography
-                  that has many advantages over some of the more fundamental
-                  cryptographic algorithms. Some of such advantages are that it
-                  is impossibly hard algorithm to break, and performs well in the
-                  worst-case assumptions. We live in a period of rapid technological
-                  development, and as certain encryption schemes become less
-                  secure we will need to invest in cryptographic systems that can
-                  not so easily be exploited. In this paper we will discuss how lattice
-                  Cryptography works and some of its advantages.
-                </p>
-              </div>
-
-              <div className="research-section">
-                <h3 className="research-section-title">Why It Matters</h3>
-                <p className="research-text">
-                  As each day passes, technology advances and so does the
-                  progress towards trivializing the decryption of our modern cryptographic systems. With the eventuality of quantum computing
-                  becoming commercialized and their use more spread it will be
-                  critical to rely on systems that are not vulnerable to quantum
-                  attacks. Lattice cryptography has conjectured security against
-                  quantum attacks, has simpler and more efficient algorithms,
-                  strong security guarantees from worst-case hardness, and versatile and powerful cryptographic objects.
-                </p>
-              </div>
-            </div>
-
-            <div className="research-actions">
-              <a
-                href="/research/Lattice_Based_Cryptography.pdf"
-                download
-                className="download-button"
-              >
-                Download PDF
-              </a>
-            </div>
+              <div className="research-actions"><a href="/research/Lattice_Based_Cryptography.pdf" target="_blank" rel="noopener noreferrer" className="text-link" aria-label="Read the lattice cryptography paper">Read paper <ArrowUpRight size={16} aria-hidden="true" /></a><a href="/research/Lattice_Based_Cryptography.pdf" download className="download-button" aria-label="Download lattice cryptography paper PDF">Download PDF <Download size={16} aria-hidden="true" /></a></div>
+            </article>
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Research;

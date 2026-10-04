@@ -1,145 +1,100 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import favicon from '../assets/favicon.svg';
+import { ArrowDown, ArrowUpRight, Code2, FileText } from 'lucide-react';
 import { RootState } from '../store';
+import { experiences } from '../data/portfolio';
+import Reveal from './Reveal';
+import Magnet from './react-bits/Magnet';
+import CountUp from './react-bits/CountUp';
+import ShinyText from './react-bits/ShinyText';
+import StarBorder from './react-bits/StarBorder';
+import SmoothAnchor from './SmoothAnchor';
 
 const Home: React.FC = () => {
   const { name, title, headshotUrl } = useSelector((state: RootState) => state.profile);
 
   return (
     <div className="home-container">
-      <div className="left-box">
-        <div className="left-side">
-          <div className="name-favicon-row">
-            <h1 className="name-label">{name}</h1>
-            <img src={favicon} alt="Favicon" className="h-10 w-10" />
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-grid" aria-hidden="true" /><div className="hero-ambient" aria-hidden="true"><span /><span /></div>
+        <Reveal className="hero-copy">
+          <p className="eyebrow hero-eyebrow"><span className="status-dot" />{title}</p>
+          <h1 id="hero-title">{name.split(' ')[0]}<br /><ShinyText text={`${name.split(' ').slice(1).join(' ')}.`} /></h1>
+          <p className="hero-description">Building scalable systems and delivering high-impact software.</p>
+          <div className="hero-actions">
+            <Magnet><StarBorder><SmoothAnchor href="#experience" className="button button-primary">View resume <ArrowDown size={18} aria-hidden="true" /></SmoothAnchor></StarBorder></Magnet>
+            <Link to="/projects" className="button button-secondary">Explore my work <ArrowUpRight size={17} aria-hidden="true" /></Link>
           </div>
-          <h3 className="title-label">{title}</h3>
-          <div className="headshot-shell">
-            <div className="headshot-box">
-              <img
-                src={headshotUrl}
-                alt={name}
-                className="headshot"
-              />
+          <div className="current-role"><span className="current-role-line" /><span>Currently at <strong>Meta</strong> – Subscriptions / Monetization</span></div>
+        </Reveal>
+        <Reveal className="hero-portrait" delay={120}>
+          <div className="portrait-frame">
+            <img src={headshotUrl} alt={name} className="headshot" loading="eager" />
             </div>
-          </div>
-        </div>
+          <p className="portrait-caption">FULL STACK. RELIABILITY. AT SCALE.</p>
+        </Reveal>
+        <SmoothAnchor className="hero-scroll" href="#about"><ArrowDown size={15} aria-hidden="true" /> A little more about me</SmoothAnchor>
+      </section>
 
-        <div className="right-side">
-          <div className="section-panel bio-panel p-8 sm:p-10">
-            <p className="bio-text bio-divider">
-              Hi, I&apos;m Josh, a software engineer with <strong>6</strong> years of industry experience building scalable systems and delivering high-impact software.
+      <section className="impact-strip" aria-label="Career highlights">
+        <div><strong aria-label="6 years"><span aria-hidden="true"><CountUp to={6} /><span> years</span></span></strong><p>Industry experience</p></div>
+        <div className="impact-company">
+          <div><strong aria-label="$10M+"><span aria-hidden="true">$<CountUp to={10} delay={0.15} />M+</span></strong><p>Cost savings at Expedia</p></div>
+          <img className="impact-logo impact-logo-expedia" src={`${process.env.PUBLIC_URL}/logos/expedia-on-dark.svg`} alt="" width="1000" height="201" />
+        </div>
+        <div className="impact-company">
+          <div><strong aria-label="$5M+"><span aria-hidden="true">$<CountUp to={5} delay={0.3} />M+</span></strong><p>ARR gained at Meta</p></div>
+          <img className="impact-logo impact-logo-meta" src={`${process.env.PUBLIC_URL}/logos/meta-on-dark.svg`} alt="" width="50" height="11" />
+        </div>
+      </section>
+
+      <section className="about-section section-layout" id="about" tabIndex={-1} aria-labelledby="about-title">
+        <Reveal className="section-intro"><p className="eyebrow">About me</p><h2 id="about-title">Reliable systems.<br /><span>Measurable impact.</span></h2></Reveal>
+        <Reveal className="about-copy"><p className="bio-text">
+              Hi! I&apos;m Josh, a software engineer with <strong>6</strong> years of industry experience building scalable systems and delivering high-impact software.
               I currently work on the Meta Subscriptions team, where I help build, operate, and monetize products used by billions of people.
-              My background spans full-stack and backend development, distributed systems, database architecture, and DevOps, with a focus on building
-              reliable, performant systems that operate at scale.
             </p>
-            <p className="bio-text bio-divider">
+<p className="bio-text">
               Previously, I worked at Expedia Group on high-traffic scalable microservices. I was also the lead software engineer and co-creator of the Simple Measurement of Activity in Real Time (SMART) system,
               where I developed an embedded system for real-time health metric monitoring and data capture.
             </p>
-            <p className="bio-text !mb-0">
+<p className="bio-text">
               This website serves as a portfolio of my work and technical interests, showcasing{' '}
-              <Link to="./projects" className="nav-link">projects</Link>,{' '}
+              <Link to="/projects" className="nav-link">projects</Link>,{' '}
               <Link to="/research" className="nav-link">research</Link>, and{' '}
               <Link to="/resume" className="nav-link">experience</Link>{' '}
               that highlight my problem-solving abilities and coding expertise.
-            </p>
-          </div>
+            </p></Reveal>
+      </section>
 
-          <div className="space-y-6 pb-5">
-            <div className="resume-card">
-              <div className="flex-justify-center">
-                <h2 className="experience-title">SDE (Full Stack) · Meta</h2>
-                <span className="year-label">2025 — Present</span>
+      <section className="experience-section section-layout" id="experience" tabIndex={-1} aria-labelledby="experience-title">
+        <div className="section-intro"><p className="eyebrow">The journey</p><h2 id="experience-title">Experience<span>.</span></h2><Link to="/resume" className="text-link">Full resume <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+        <div className="experience-list">
+          {experiences.map((experience, index) => (
+            <Reveal key={experience.company}>
+              <div className="content-card experience-card">
+                <div className="experience-meta"><span className="mono">{experience.dates}</span>{index === 0 && <span className="current-badge">Current</span>}</div>
+                <div className="experience-company">
+                  <h3>{experience.company}</h3>
+                  {experience.employmentType === 'Internship' && <span className="internship-badge">Internship</span>}
+                </div>
+                <p className="experience-role">{experience.role}</p>
+                <ul>{experience.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>
+                <div className="tag-list">{experience.technologies.map(technology => <span className="pill-label" key={technology}>{technology}</span>)}</div>
               </div>
-              <ul className="experience-list">
-                <li>Build, maintain, and operate benefits for Meta Subscriptions.</li>
-                <li>Lead efforts to modernize the AI workflows used to accelerate the software lifecycle.</li>
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="pill-label">Hack</span>
-                <span className="pill-label">Kotlin</span>
-                <span className="pill-label">Python</span>
-                <span className="pill-label">React</span>
-                <span className="pill-label">GraphQL</span>
-              </div>
-            </div>
-
-            <div className="resume-card">
-              <div className="flex-justify-center">
-                <h2 className="experience-title">SDE (Full Stack) · Expedia Group</h2>
-                <span className="year-label">2022 — 2025</span>
-              </div>
-              <ul className="experience-list">
-                <li>Designed and implemented a dynamic messaging rules engine, achieving an initial cost savings of $11.1M.</li>
-                <li>Designed and implemented a scalable microservices architecture for a high-traffic application, reducing downtime by 10% and improving response time by 30%.</li>
-                <li>Mentored 2 junior developers, resulting in a 30% reduction in onboarding time and higher code quality standards.</li>
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="pill-label">Java</span>
-                <span className="pill-label">Kotlin</span>
-                <span className="pill-label">TypeScript</span>
-                <span className="pill-label">React</span>
-                <span className="pill-label">GraphQL</span>
-              </div>
-            </div>
-
-            <div className="resume-card">
-              <div className="flex-justify-center">
-                <h2 className="experience-title">SDE (Full Stack) · Infovisa Inc.</h2>
-                <span className="year-label">2020 — 2022</span>
-              </div>
-              <ul className="experience-list">
-                <li>Led the development and maintenance of 20+ financial technology applications with a focus on tax accounting and trust investment management.</li>
-                <li>Achieved notable performance improvements, including a 40% reduction in average build times and 64% faster load times for web applications.</li>
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="pill-label">C# .NET</span>
-                <span className="pill-label">TypeScript</span>
-                <span className="pill-label">Azure</span>
-                <span className="pill-label">PostgreSQL</span>
-              </div>
-            </div>
-
-            <div className="resume-card">
-              <div className="flex-justify-center">
-                <h2 className="experience-title">SDE (Full Stack, Embedded) · Madonna Rehabilitation Hospital</h2>
-                <span className="year-label">2018 — 2020</span>
-              </div>
-              <ul className="experience-list">
-                <li>Conceptualized and developed the Simple Measurement of Activity in Real Time (SMART) system.</li>
-                <li>Led as the integration engineer facilitating collaboration between software and hardware teams.</li>
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="pill-label">JavaScript</span>
-                <span className="pill-label">React</span>
-                <span className="pill-label">SQL</span>
-                <span className="pill-label">C</span>
-                <span className="pill-label">Python</span>
-              </div>
-            </div>
-
-            <div className="resume-card">
-              <div className="flex-justify-center">
-                <h2 className="experience-title">SDE (Backend) · Sandhills Global</h2>
-                <span className="year-label">2017 — 2018</span>
-              </div>
-              <ul className="experience-list">
-                <li>Developed web applications for trading and auctions, improving user experience and system efficiency.</li>
-                <li>Led the design and optimization of APIs to enhance functionality, performance, and maintainability.</li>
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <span className="pill-label">C# .NET</span>
-                <span className="pill-label">VB.NET</span>
-                <span className="pill-label">MySQL</span>
-                <span className="pill-label">Python</span>
-              </div>
-            </div>
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </section>
+
+      <section className="explore-section" aria-labelledby="explore-title">
+        <div className="section-heading"><div><p className="eyebrow">Beyond the day job</p><h2 id="explore-title">Work & curiosity<span>.</span></h2></div></div>
+        <div className="explore-grid">
+          <div className="content-card explore-card"><Link to="/projects"><Code2 size={26} strokeWidth={1.4} aria-hidden="true" /><span className="explore-number">BUILD</span><h3>Personal projects</h3><p>React, TypeScript, mobile development, and AI.</p><span className="text-link">Explore projects <ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
+          <div className="content-card explore-card"><Link to="/research"><FileText size={26} strokeWidth={1.4} aria-hidden="true" /><span className="explore-number">EXPLORE</span><h3>Papers & research</h3><p>Dimensionality reduction, data compression, and cryptography.</p><span className="text-link">Read the research <ArrowUpRight size={19} aria-hidden="true" /></span></Link></div>
+        </div>
+      </section>
     </div>
   );
 };

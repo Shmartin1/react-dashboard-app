@@ -1,0 +1,20 @@
+.artwork-chromesthesia { background: radial-gradient(ellipse at 45% 45%, #283655, #111a2e 74%); }
+.artwork-frontend { background: radial-gradient(ellipse at 50% 40%, #253360, #10192e 75%); }
+.artwork-roast { background: radial-gradient(ellipse at 50% 40%, #28305c, #10182d 75%); }
+.chromesthesia-art { background: #080b16; }
+.sound-world { display: block; width: 100%; overflow: hidden; }
+.sound-world text { fill: #7895b5; font: 7px 'DM Mono', monospace; letter-spacing: 0.08em; }
+.sound-ground { fill: #295ba21c; }.sound-orb-halo { fill: #2c81ff10; }
+.sound-orb, .sound-ribbon, .sound-filaments { transform-box: fill-box; transform-origin: center; }
+.sound-orb { animation: sound-orb-breathe 4s ease-in-out infinite; }
+.sound-ribbon { animation: sound-ribbon-drift 6s ease-in-out -1s infinite; }
+.sound-filaments { animation: sound-filament-glow 3.5s ease-in-out -0.5s infinite; }
+.sound-wave-axis { stroke: #23364f; stroke-width: 0.6; }
+.sound-bar { fill: #83bfff; transform-box: fill-box; transform-origin: center; animation: sound-equalizer 1.7s ease-in-out infinite; }
+.sound-bar:nth-of-type(3n) { fill: #c6aaff; }
+.sound-tags { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid #26384f; padding: 11px 15px; color: #92abc8; font: 7px 'DM Mono', monospace; }
+@keyframes sound-orb-breathe { 0%, 100% { transform: translateY(5px) scale(0.96); } 50% { transform: translateY(-7px) scale(1.04); } }
+@keyframes sound-ribbon-drift { 0%, 100% { transform: translateY(4px) rotate(-5deg); } 50% { transform: translateY(-5px) rotate(5deg); } }
+@keyframes sound-filament-glow { 0%, 100% { opacity: 0.5; transform: scale(0.96); } 50% { opacity: 1; transform: scale(1.04); } }
+@keyframes sound-equalizer { 0%, 100% { transform: scaleY(0.3); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+@media (max-width: 700px) { .artwork-roast { min-height: 360px; } }
