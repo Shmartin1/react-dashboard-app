@@ -1,37 +1,14 @@
-.header-style {
-  background: rgba(15, 23, 36, 0.72);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  @apply sticky top-0 z-50 w-full;
-}
-
-.header-container {
-  @apply mx-auto flex max-w-7xl items-center justify-center px-4 py-4 sm:px-6 lg:px-8;
-}
-
-.flex-justify {
-  @apply flex flex-wrap items-center justify-center gap-2 sm:gap-3;
-}
-
-.header-link {
-  color: rgba(248, 250, 252, 0.82);
-  border: 1px solid transparent;
-  @apply rounded-full px-4 py-2 text-sm font-semibold tracking-[0.12em] uppercase transition-all duration-200;
-  white-space: nowrap;
-}
-
-.header-link:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-@media (max-width: 640px) {
-  .header-container {
-    @apply px-3 py-3;
-  }
-
-  .header-link {
-    @apply px-3 py-2 text-[11px];
-  }
-}
+.site-header { position: sticky; top: 0; z-index: 20; background: rgba(10,18,31,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.wordmark { font-family: 'DM Mono', monospace; font-size: 23px; line-height: 1; letter-spacing: -0.07em; font-weight: 400; color: #77b8ff; }
+.wordmark span { color: #d8eaff; }
+.primary-nav { display: flex; align-items: center; gap: 30px; }
+.primary-nav a { padding: 13px 0; font-size: 13px; color: var(--text-muted); position: relative; transition: color 180ms; }
+.primary-nav a:hover, .primary-nav a.active { color: var(--heading); }
+.primary-nav a::after { content: ''; position: absolute; bottom: 3px; left: 50%; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); transform: scale(0); transition: transform 200ms; }
+.primary-nav a.active::after { transform: scale(1); }
+.header-contact { display: flex; align-items: center; gap: 15px; font-size: 11px; color: var(--accent-strong); white-space: nowrap; }
+.header-contact svg { transition: transform 220ms ease; }.header-contact:hover svg { transform: translate(2px,-2px); }
+.header-contact:hover { color: white; }
+@media (max-width: 800px) { .header-inner { gap: 18px; }.primary-nav { gap: 22px; }.wordmark { font-size: 20px; }.header-contact { gap: 8px; } }
+@media (max-width: 600px) { .header-inner { min-height: 104px; flex-wrap: wrap; padding-top: 19px; gap: 6px 20px; }.primary-nav { order: 3; width: 100%; justify-content: space-between; gap: 14px; padding-bottom: 6px; }.primary-nav a { font-size: 12px; }.header-contact { margin-left: auto; }.wordmark { font-size: 22px; } }
